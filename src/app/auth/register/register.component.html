@@ -1,0 +1,39 @@
+<div class="row" *ngIf="!rekvizitToEdit">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form #registerForm="ngForm" (ngSubmit)="onRegisterFormSubmit(registerForm)">
+      <div class="form-group">
+        <label for="firstname">First name</label>
+        <input type="text" id="firstname" name="firstname" class="form-control" required ngModel #firstnameRef="ngModel">
+        <span class="help-block" *ngIf="!firstnameRef.valid && firstnameRef.touched">First name is required!</span>
+      </div>
+
+      <div class="form-group">
+        <label for="lastname">Last name</label>
+        <input type="text" id="lastname" name="lastname" class="form-control" required ngModel #lastnameRef="ngModel">
+        <span class="help-block" *ngIf="!lastnameRef.valid && lastnameRef.touched">Last name is required!</span>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" class="form-control" required ngModel #emailRef="ngModel">
+        <span class="help-block" *ngIf="!emailRef.valid && emailRef.touched">Email is required!</span>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" class="form-control" required ngModel #usernameRef="ngModel">
+        <span class="help-block" *ngIf="!usernameRef.valid && usernameRef.touched">Username is required!</span>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" id="password" name="password" class="form-control" required ngModel #passwordRef="ngModel">
+        <span class="help-block" *ngIf="!passwordRef.valid && passwordRef.touched">Password is required!</span>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!reisterForm.valid">Register</button>
+      <button class="btn btn-warning" (click)="resetForm(registerForm)">Reset</button>
+      <button class="btn btn-danger" routerLink="/">Cancel</button>
+    </form>
+  </div>
+</div>
