@@ -7,6 +7,9 @@ import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { SearchComponent } from './search/search.component';
+import { SearchListComponent } from './search/search-list/search-list.component';
+import { AccommodationItemComponent } from './search/search-list/accommodation-item/accommodation-item.component';
 
 
 @NgModule({
@@ -14,7 +17,10 @@ import { RegisterComponent } from './auth/register/register.component';
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SearchComponent,
+    SearchListComponent,
+    AccommodationItemComponent
   ],
   imports: [
     FormsModule,
