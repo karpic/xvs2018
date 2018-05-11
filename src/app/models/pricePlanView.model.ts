@@ -1,4 +1,4 @@
-export class PricePlan {
+export class PricePlanView {
   constructor(
     public id: number,
     public startingDate: Date,

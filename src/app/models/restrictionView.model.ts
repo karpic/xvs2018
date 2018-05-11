@@ -1,7 +1,7 @@
-export class Restriction {
+export class RestrictionView {
   constructor(
     public id: number,
-    public restricitonFrom: Date,
+    public restrictionFrom: Date,
     public restrictionTo: Date
   ){}
 }

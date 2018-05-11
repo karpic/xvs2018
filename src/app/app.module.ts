@@ -10,6 +10,10 @@ import { RegisterComponent } from './auth/register/register.component';
 import { SearchComponent } from './search/search.component';
 import { SearchListComponent } from './search/search-list/search-list.component';
 import { AccommodationItemComponent } from './search/search-list/accommodation-item/accommodation-item.component';
+import { ReservationsComponent } from './reservations/reservations.component';
+import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
+import { AccommodationViewComponent } from './views/accommodation-view/accommodation-view.component';
+import { ReservationViewComponent } from './views/reservation-view/reservation-view.component';
 
 
 @NgModule({
@@ -20,7 +24,11 @@ import { AccommodationItemComponent } from './search/search-list/accommodation-i
     RegisterComponent,
     SearchComponent,
     SearchListComponent,
-    AccommodationItemComponent
+    AccommodationItemComponent,
+    ReservationsComponent,
+    NewReservationComponent,
+    AccommodationViewComponent,
+    ReservationViewComponent
   ],
   imports: [
     FormsModule,
