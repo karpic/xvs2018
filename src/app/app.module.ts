@@ -1,3 +1,6 @@
+import { AdditionalServicesService } from './services/additionalServices.service';
+import { DataService } from './services/dataService.service';
+import { AccommodationService } from './services/accommodation.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +38,11 @@ import { ReservationViewComponent } from './views/reservation-view/reservation-v
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AccommodationService,
+    DataService,
+    AdditionalServicesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
