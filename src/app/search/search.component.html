@@ -2,9 +2,9 @@
   <div class="row">
       <div class="col-lg-6">
           <div class="input-group">
-            <input type="text" id="address" name="address" class="form-control" placeholder="Input desired adress...">
+            <input type="text" id="address" name="address" class="form-control" placeholder="Input desired adress..." [(ngModel)]="location">
             <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
+              <button class="btn btn-default" type="button" (click)="searchSimple()">Go!</button>
             </span>
           </div>
         </div>
@@ -14,7 +14,7 @@
     <div class="col-lg-3">
       <div class="input-group">
         <label for="capacity">Capacity</label>
-        <input type="text" name="capacity" id="capacity"  class="form-control" placeholder="Input desired number of peaople...">
+        <input type="text" name="capacity" id="capacity"  class="form-control" placeholder="Input desired number of peaople..." [(ngModel)]="capacity">
       </div>
     </div>
 
@@ -35,5 +35,10 @@
 </div>
 <br>
 <hr>
+<div class="row">
+  <div class="checkbox" *ngFor="let additionalService of additonalServices">
+    <label><input type="checkbox" value="">{{additionalService.serviceName}}</label>
+  </div>
+</div>
 
-<app-search-list></app-search-list>
+<app-search-list [accommodationList]="accommodationList"></app-search-list>

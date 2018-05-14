@@ -17,6 +17,8 @@ import { ReservationsComponent } from './reservations/reservations.component';
 import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
 import { AccommodationViewComponent } from './views/accommodation-view/accommodation-view.component';
 import { ReservationViewComponent } from './views/reservation-view/reservation-view.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReservationsService } from './services/reservations.service';
 
 
 @NgModule({
@@ -35,13 +37,15 @@ import { ReservationViewComponent } from './views/reservation-view/reservation-v
   ],
   imports: [
     FormsModule,
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule
   ],
   providers: [
     AccommodationService,
     DataService,
-    AdditionalServicesService
+    AdditionalServicesService,
+    ReservationsService
   ],
   bootstrap: [AppComponent]
 })

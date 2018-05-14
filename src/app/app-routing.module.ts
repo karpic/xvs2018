@@ -1,3 +1,4 @@
+import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NgModule, Component } from '@angular/core';
@@ -10,7 +11,8 @@ const routes: Routes = [
  { path: 'login', component: LoginComponent },
  { path: 'register', component: RegisterComponent},
  { path: 'search', component: SearchComponent },
- { path: 'accommodation/:id', component: AccommodationViewComponent}
+ { path: 'accommodation/:id', component: AccommodationViewComponent},
+ { path: 'newreservation', component: NewReservationComponent}
 ];
 
 @NgModule({

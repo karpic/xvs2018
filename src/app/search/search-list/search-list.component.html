@@ -1,5 +1,3 @@
-<app-accommodation-item></app-accommodation-item>
-<app-accommodation-item></app-accommodation-item>
-<app-accommodation-item></app-accommodation-item>
-<app-accommodation-item></app-accommodation-item>
+<app-accommodation-item *ngFor="let accommodationItem of accommodationList" [accommodation]="accommodationItem" [displayReservationButton]="true"></app-accommodation-item>
+
 

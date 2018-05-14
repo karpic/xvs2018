@@ -12,10 +12,11 @@ const httpOptions = {
 
 @Injectable()
 export class AdditionalServicesService {
-  private url = 'http://localhost:8080/api/additionalservices/all';
+  //private deployedUrll = 'http://warm-badlands-25076.herokuapp.com/api/additionalServices';
+  private baseUrl = 'http://localhost:8080/api/additionalservices/all';
 
   getAll(): Observable<any> {
-    return this.http.get<any>(this.url, httpOptions);
+    return this.http.get<any>(this.baseUrl, httpOptions);
   }
 
   constructor(

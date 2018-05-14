@@ -18,8 +18,8 @@ export class AccommodationService {
     return this.http.get<any>(this.url+'=id:'+id, httpOptions);
   }
 
-  searchByLocation(location: string): Observable<any> {
-    return this.http.get<any>(this.url+'=location:' + location, httpOptions);
+  simpleSearch(location: string, numOfPeople: number): Observable<any> {
+    return this.http.get<any>(this.url+'=location:' + location +',capacity:'+numOfPeople + '&page=0&size=10&sort=name,desc', httpOptions);
   }
 
   constructor(

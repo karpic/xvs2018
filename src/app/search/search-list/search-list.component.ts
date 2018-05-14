@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AccommodationView } from './../../models/accommodationView.model';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-search-list',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-list.component.css']
 })
 export class SearchListComponent implements OnInit {
+  @Input() accommodationList: AccommodationView[];
 
   constructor() { }
 
