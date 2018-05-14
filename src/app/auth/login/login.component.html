@@ -1,9 +1,10 @@
-<div class="row" *ngIf="!rekvizitToEdit">
+<div class="row text-center" *ngIf="!rekvizitToEdit">
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <form #loginForm="ngForm" (ngSubmit)="onLoginFormSubmit(loginForm)">
+    <form #loginForm="ngForm" (ngSubmit)="onLoginFormSubmit(loginForm)" class="form-signin">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" id="username" name="username" class="form-control" required ngModel #usernameRef="ngModel">
+        <input type="text" id="username" name="username" class="form-control" required autofocus ngModel #usernameRef="ngModel">
         <span class="help-block" *ngIf="!usernameRef.valid && usernameRef.touched">First name is required!</span>
       </div>
 
@@ -13,8 +14,9 @@
         <span class="help-block" *ngIf="!passwordRef.valid && passwordRef.touched">Last name is required!</span>
       </div>
 
-      <button type="submit" class="btn btn-success" [disabled]="!loginForm.valid">Login</button>
-      <button class="btn btn-danger" routerLink="/">Cancel</button>
+      <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!loginForm.valid">Login</button>
+      <button class="btn btn-lg btn-danger btn-block" routerLink="/">Cancel</button>
     </form>
   </div>
 </div>
+
