@@ -1,4 +1,7 @@
+import { AccommodationView } from './../../models/accommodationView.model';
+import { AccommodationService } from './../../services/accommodation.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-accommodation-view',
@@ -6,10 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./accommodation-view.component.css']
 })
 export class AccommodationViewComponent implements OnInit {
+  id: number;
+  accommodation: AccommodationView;
 
-  constructor() { }
+  getAccommodation(){
+    this.accommodationService.getOne(this.id).subscribe(
+      (responseData) => {this.accommodation = responseData;
+      console.log(this.accommodation);}
+    )
+  }
+
+  constructor(
+    private route: ActivatedRoute,
+    private accommodationService: AccommodationService
+  ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = params["id"];
+      }
+    );
+    this.getAccommodation();
   }
 
 }

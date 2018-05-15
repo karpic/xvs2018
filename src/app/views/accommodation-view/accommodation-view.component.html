@@ -1,11 +1,11 @@
-<div class="conta">
+<div class="container">
   <div class="row">
     <div class="col-xs-10">
-        <h2>Accommodation name</h2>
+        <h2>{{accommodation.name}}</h2>
         <ul class="list-inline">
             <li><a href="#">2 Days Ago</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-star"></i>4.3</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-user"></i>Agent username</a></li>
+            <li><a href="#"><i class="glyphicon glyphicon-user"></i>{{accommodation.agentUsername}}</a></li>
           </ul>
     </div>
     <div class="col-xs-2">
@@ -16,24 +16,22 @@
   <hr>
   <div class="row">
     <div class="col-xs-12">
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas molestias assumenda ex deserunt repellendus totam qui quo necessitatibus similique doloremque? Ipsa, eligendi blanditiis quod enim illum fugiat quia omnis dignissimos modi dolor quam, quae rerum eveniet laboriosam neque doloremque accusantium doloribus ducimus in repellendus culpa. Iure quibusdam voluptate molestiae ipsa!</p>
+      <p class="lead">{{accommodation.description}}</p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-6">
-      <p>Type: <b>Some random type</b></p>
-      <p>Category: <b>Some random category</b></p>
-      <p>Location: <b>Some random location</b></p>
-      <p>Capacity: <b>8</b></p>
+      <p>Type: <b>{{accommodation.typeName}}</b></p>
+      <p>Category: <b>{{accommodation.categoryName}}</b></p>
+      <p>Location: <b>{{accommodation.location}}</b></p>
+      <p>Capacity: <b>{{accommodation.capacity}}</b></p>
     </div>
 
     <div class="col-xs-6">
       <h4>Additional services</h4>
       <ul class="list-group">
-        <li class="list-group-item">Additional service 1</li>
-        <li class="list-group-item">Additional service 2</li>
-        <li class="list-group-item">Additional service 3</li>
+        <!-- <li class="list-group-item" *ngFor="let additionalService of accommodation.additionalServicesName">{{additionalService}}</li> -->
       </ul>
     </div>
   </div>
@@ -41,9 +39,7 @@
   <br>
   <div class="row">
     <div class="col-xs-12">
-        <img src="//placehold.it/200" style="width:200px;height:200px" class="img-rounded">
-        <img src="//placehold.it/200" style="width:200px;height:200px" class="img-rounded">
-        <img src="//placehold.it/200" style="width:200px;height:200px" class="img-rounded">
+       <!--  <img *ngFor="let imagePath of accommodation.imagesPath" [src]="imagePath" style="width:200px;height:200px" class="img-rounded"> -->
     </div>
   </div>
   <hr>

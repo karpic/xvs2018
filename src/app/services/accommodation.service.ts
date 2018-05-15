@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
+import { AccommodationView } from '../models/accommodationView.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,6 +15,7 @@ const httpOptions = {
 
 @Injectable()
 export class AccommodationService {
+  private baseUrl = 'http://localhost:8080/api/accommodation';
   private url = 'http://localhost:8080/api/accommodation/all?search';
 
   findOne(id: number): Observable<any>{
@@ -45,6 +47,10 @@ export class AccommodationService {
     console.log(searchUrl);
 
     return this.http.get<any>(searchUrl, httpOptions);
+  }
+
+  getOne(id: number): Observable<AccommodationView> {
+    return this.http.get<AccommodationView>(this.baseUrl+'?id='+id, httpOptions);
   }
 
   constructor(
