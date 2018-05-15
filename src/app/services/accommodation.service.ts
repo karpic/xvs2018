@@ -1,3 +1,5 @@
+import { CategoryView } from './../models/categoryView.model';
+import { AdditionalServiceView } from './../models/additionalServiceView.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -18,8 +20,31 @@ export class AccommodationService {
     return this.http.get<any>(this.url+'=id:'+id, httpOptions);
   }
 
-  simpleSearch(location: string, numOfPeople: number): Observable<any> {
-    return this.http.get<any>(this.url+'=location:' + location +',capacity:'+numOfPeople + '&page=0&size=10&sort=name,desc', httpOptions);
+  simpleSearch(location: string, numOfPeople: number, pageNumber: number): Observable<any> {
+    return this.http.get<any>(this.url+'=location:' + location +',capacity:'+numOfPeople + '&page=' + pageNumber + '&size=10&sort=name,desc', httpOptions);
+  }
+
+  advancedSearch(location: string, numOfPeople:number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number): Observable<any> {
+    let searchUrl: string = this.url;
+    //appendLocation
+    searchUrl = searchUrl + '=location:' + location;
+    //append numOfPeople
+    searchUrl = searchUrl + ',capacity:' + numOfPeople;
+
+    //append additional services
+    for(let service of services){
+      searchUrl = searchUrl + ',service:'+service.serviceName;
+    }
+
+    //append accommodationType
+    searchUrl = searchUrl + ',type:' + accommodationType;
+    //append category
+    searchUrl = searchUrl + ',category:' + accommodationCategory.name;
+
+    searchUrl = searchUrl + '&page=' + pageNumber + '&size=10&sort=name,desc'
+    console.log(searchUrl);
+
+    return this.http.get<any>(searchUrl, httpOptions);
   }
 
   constructor(

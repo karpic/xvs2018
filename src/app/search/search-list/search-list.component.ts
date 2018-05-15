@@ -8,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SearchListComponent implements OnInit {
   @Input() accommodationList: AccommodationView[];
-
+  @Input() numberOfPages: number;
+  @Input() numberOfElements: number;
   constructor() { }
 
   ngOnInit() {

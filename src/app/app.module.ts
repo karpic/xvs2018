@@ -1,3 +1,4 @@
+import { CategoryService } from './services/category.service';
 import { AdditionalServicesService } from './services/additionalServices.service';
 import { DataService } from './services/dataService.service';
 import { AccommodationService } from './services/accommodation.service';
@@ -45,7 +46,8 @@ import { ReservationsService } from './services/reservations.service';
     AccommodationService,
     DataService,
     AdditionalServicesService,
-    ReservationsService
+    ReservationsService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
