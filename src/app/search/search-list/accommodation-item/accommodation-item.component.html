@@ -1,7 +1,8 @@
 <div class="row">
     <br>
     <div class="col-md-2 col-sm-3 text-center">
-      <a class="story-img" href="#"><img [src]="accommodation.imagesPath[0]" style="width:100px;height:100px" class="img-circle"></a>
+      <br><br>
+      <a *ngIf="accommodation.images" class="story-img" href="#"><img [src]="accommodation.images[0].path" style="width:100px;height:100px" class="img-circle"></a>
     </div>
     <div class="col-md-10 col-sm-9">
       <h3>{{accommodation.name}}</h3>
@@ -18,7 +19,7 @@
                 <button type="button" class="btn btn-primary" (click)="reservationClicked()" *ngIf="displayReservationButton">Reservation</button>
             </div>
           </div>
-          <p class="lead"><button class="btn btn-default" routerLink="/accommodation/1" (click)="readMoreClicked()">Read More</button></p>
+          <p class="lead"><button class="btn btn-default" (click)="readMoreClicked()">Read More</button></p>
           <ul class="list-inline"><li><a href="#">2 Days Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-star"></i>4.3</a></li></ul>
           </div>
         <div class="col-xs-3"></div>

@@ -13,7 +13,7 @@ export class AccommodationItemComponent implements OnInit {
   @Input() displayReservationButton: boolean;
 
   readMoreClicked() {
-    this.dataService.changeAccommodationView(this.accommodation);
+    this.router.navigate(['/accommodation/'+this.accommodation.id]);
   }
 
   reservationClicked() {

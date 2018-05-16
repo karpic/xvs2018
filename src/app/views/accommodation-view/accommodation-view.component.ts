@@ -1,3 +1,4 @@
+import { AccommodationTypeView } from './../../models/accommodationTypeView.model';
 import { AccommodationView } from './../../models/accommodationView.model';
 import { AccommodationService } from './../../services/accommodation.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class AccommodationViewComponent implements OnInit {
   id: number;
-  accommodation: AccommodationView;
+  accommodation: AccommodationView = new AccommodationView(1,'','','','',[],1,[],[],'',[],'');
 
   getAccommodation(){
     this.accommodationService.getOne(this.id).subscribe(

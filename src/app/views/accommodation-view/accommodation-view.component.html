@@ -31,7 +31,7 @@
     <div class="col-xs-6">
       <h4>Additional services</h4>
       <ul class="list-group">
-        <!-- <li class="list-group-item" *ngFor="let additionalService of accommodation.additionalServicesName">{{additionalService}}</li> -->
+        <li class="list-group-item" *ngFor="let additionalService of accommodation.additionalServices">{{additionalService.serviceName}}</li>
       </ul>
     </div>
   </div>
@@ -39,7 +39,7 @@
   <br>
   <div class="row">
     <div class="col-xs-12">
-       <!--  <img *ngFor="let imagePath of accommodation.imagesPath" [src]="imagePath" style="width:200px;height:200px" class="img-rounded"> -->
+        <img *ngFor="let image of accommodation.images" [src]="image.path" style="width:200px;height:200px" class="img-rounded"><br><br>
     </div>
   </div>
   <hr>
