@@ -20,6 +20,8 @@ import { AccommodationViewComponent } from './views/accommodation-view/accommoda
 import { ReservationViewComponent } from './views/reservation-view/reservation-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReservationsService } from './services/reservations.service';
+import { UsersService } from './services/users.service';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { ReservationsService } from './services/reservations.service';
     ReservationsComponent,
     NewReservationComponent,
     AccommodationViewComponent,
-    ReservationViewComponent
+    ReservationViewComponent,
+    UserprofileComponent
   ],
   imports: [
     FormsModule,
@@ -47,7 +50,8 @@ import { ReservationsService } from './services/reservations.service';
     DataService,
     AdditionalServicesService,
     ReservationsService,
-    CategoryService
+    CategoryService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

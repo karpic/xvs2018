@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { Routes, Router, RouterModule } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
 import { AccommodationViewComponent } from './views/accommodation-view/accommodation-view.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 
 const routes: Routes = [
  { path: 'login', component: LoginComponent },
  { path: 'register', component: RegisterComponent},
  { path: 'search', component: SearchComponent },
  { path: 'accommodation/:id', component: AccommodationViewComponent},
- { path: 'newreservation', component: NewReservationComponent}
+ { path: 'newreservation', component: NewReservationComponent},
+ { path: 'userprofile', component: UserprofileComponent}
 ];
 
 @NgModule({
