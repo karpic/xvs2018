@@ -1,3 +1,4 @@
+import { MessagesComponent } from './reservations/messages/messages.component';
 import { UserImpressionComponent } from './reservations/user-impression/user-impression.component';
 import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
 import { SearchComponent } from './search/search.component';
@@ -18,7 +19,9 @@ const routes: Routes = [
  { path: 'newreservation', component: NewReservationComponent},
  { path: 'userprofile', component: UserprofileComponent, children: [
    { path: 'reservations', component: ReservationsComponent},
-   { path: 'review', component: UserImpressionComponent}
+   //component path below are for testing purposes
+   { path: 'review', component: UserImpressionComponent},
+   { path: 'messages', component: MessagesComponent}
  ]}
 ];
 

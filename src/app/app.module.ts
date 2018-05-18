@@ -23,6 +23,7 @@ import { ReservationsService } from './services/reservations.service';
 import { UsersService } from './services/users.service';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { UserImpressionComponent } from './reservations/user-impression/user-impression.component';
+import { MessagesComponent } from './reservations/messages/messages.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { UserImpressionComponent } from './reservations/user-impression/user-imp
     AccommodationViewComponent,
     UserprofileComponent,
     UserImpressionComponent,
+    MessagesComponent,
   ],
   imports: [
     FormsModule,
