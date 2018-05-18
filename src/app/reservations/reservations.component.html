@@ -1,3 +1,11 @@
-<p>
-  reservations works!
-</p>
+<a class="list-group-item clearfix" *ngFor="let reservation of reservationsList">
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">Reservation for <b>{{reservation.accommodatioName}}</b></h4>
+    <p class="list-group-item-text">Reservation from: {{reservation.startingDate | date}}</p>
+    <p class="list-group-item-text">Reservation to: {{reservation.endingDate | date}}</p>
+  </div>
+  <div class="pull-right">
+      <button class="btn btn-danger">Cancel reservation</button>
+      <button *ngIf="reservation.confirmed" class="btn btn-success">Leave a review</button>
+  </div>
+</a>

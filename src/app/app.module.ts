@@ -1,3 +1,4 @@
+import { MockDataService } from './services/mockdata/mockdata.service';
 import { CategoryService } from './services/category.service';
 import { AdditionalServicesService } from './services/additionalServices.service';
 import { DataService } from './services/dataService.service';
@@ -17,11 +18,11 @@ import { AccommodationItemComponent } from './search/search-list/accommodation-i
 import { ReservationsComponent } from './reservations/reservations.component';
 import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
 import { AccommodationViewComponent } from './views/accommodation-view/accommodation-view.component';
-import { ReservationViewComponent } from './views/reservation-view/reservation-view.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReservationsService } from './services/reservations.service';
 import { UsersService } from './services/users.service';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { UserImpressionComponent } from './reservations/user-impression/user-impression.component';
 
 
 @NgModule({
@@ -36,8 +37,8 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     ReservationsComponent,
     NewReservationComponent,
     AccommodationViewComponent,
-    ReservationViewComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    UserImpressionComponent,
   ],
   imports: [
     FormsModule,
@@ -51,7 +52,8 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     AdditionalServicesService,
     ReservationsService,
     CategoryService,
-    UsersService
+    UsersService,
+    MockDataService
   ],
   bootstrap: [AppComponent]
 })

@@ -26,22 +26,22 @@
       <!-- SIDEBAR MENU -->
       <div class="profile-usermenu">
         <ul class="nav">
-          <li class="active">
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a href="#">
             <i class="glyphicon glyphicon-home"></i>
             Overview </a>
           </li>
-          <li>
-            <a href="#">
+          <li routerLinkActive="active">
+            <a>
             <i class="glyphicon glyphicon-user"></i>
             Account Settings </a>
           </li>
-          <li>
-            <a href="#" target="_blank">
+          <li routerLinkActive="active">
+            <a routerLink="reservations">
             <i class="glyphicon glyphicon-road"></i>
             Reservations </a>
           </li>
-          <li>
+          <li routerLinkActive="active">
             <a href="#">
             <i class="glyphicon glyphicon-inbox"></i>
             Messages </a>

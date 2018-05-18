@@ -1,3 +1,4 @@
+import { UserImpressionComponent } from './reservations/user-impression/user-impression.component';
 import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
 import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -7,6 +8,7 @@ import { Routes, Router, RouterModule } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
 import { AccommodationViewComponent } from './views/accommodation-view/accommodation-view.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 const routes: Routes = [
  { path: 'login', component: LoginComponent },
@@ -14,7 +16,10 @@ const routes: Routes = [
  { path: 'search', component: SearchComponent },
  { path: 'accommodation/:id', component: AccommodationViewComponent},
  { path: 'newreservation', component: NewReservationComponent},
- { path: 'userprofile', component: UserprofileComponent}
+ { path: 'userprofile', component: UserprofileComponent, children: [
+   { path: 'reservations', component: ReservationsComponent},
+   { path: 'review', component: UserImpressionComponent}
+ ]}
 ];
 
 @NgModule({

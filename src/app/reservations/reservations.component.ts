@@ -1,3 +1,4 @@
+import { MockDataService } from './../services/mockdata/mockdata.service';
 import { ReservationView } from './../models/reservationView.model';
 import { ReservationsService } from './../services/reservations.service';
 import { Component, OnInit } from '@angular/core';
@@ -18,12 +19,21 @@ export class ReservationsComponent implements OnInit {
     );
   }
 
+  getReservationsMock() {
+    this.mockData.getMyReservations().subscribe(
+      (response) => this.reservationsList = response
+    )
+    console.log(this.reservationsList);
+  }
+
   constructor(
-    private reservationsService: ReservationsService
+    private reservationsService: ReservationsService,
+    private mockData: MockDataService
   ) { }
 
   ngOnInit() {
-    this.getReservationsForLoggedInUser();
+    //this.getReservationsForLoggedInUser();
+    this.getReservationsMock();
   }
 
 }
