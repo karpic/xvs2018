@@ -17,9 +17,9 @@ export class MockDataService {
 
   getMyReservations(): Observable<ReservationView[]> {
     let retVal = [];
-    let reservation1 = new ReservationView(1, "Hotel 1", "randomusername", new Date(), new Date(), true, []);
-    let reservation2 = new ReservationView(2, "Hotel 2", "randomusername", new Date(), new Date(), true, []);
-    let reservation3 = new ReservationView(3, "Hotel 3", "randomusername", new Date(), new Date(), true, []);
+    let reservation1 = new ReservationView(1, "Hotel 1", 1, "randomusername", new Date(), new Date(), true, []);
+    let reservation2 = new ReservationView(2, "Hotel 2", 1, "randomusername", new Date(), new Date(), true, []);
+    let reservation3 = new ReservationView(3, "Hotel 3", 1, "randomusername", new Date(), new Date(), true, []);
     retVal.push(reservation1);
     retVal.push(reservation2);
     retVal.push(reservation3);

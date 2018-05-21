@@ -27,11 +27,11 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="text" id="password" name="password" class="form-control" required ngModel #passwordRef="ngModel">
+        <input type="password" id="password" name="password" class="form-control" required ngModel #passwordRef="ngModel">
         <span class="help-block" *ngIf="!passwordRef.valid && passwordRef.touched">Password is required!</span>
       </div>
 
-      <button type="submit" class="btn btn-primary" [disabled]="!reisterForm.valid">Register</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
       <button class="btn btn-warning" (click)="resetForm(registerForm)">Reset</button>
       <button class="btn btn-danger" routerLink="/">Cancel</button>
     </form>

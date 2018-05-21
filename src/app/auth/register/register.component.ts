@@ -2,6 +2,8 @@ import { UserCreation } from './../../models/userCreation.model';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UsersService } from '../../services/users.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +21,8 @@ export class RegisterComponent implements OnInit {
     this.newUser.username = forma.value.username;
     this.newUser.password = forma.value.password;
 
-    //TO DO: zahtev na server
+    this.authService.registerUser(this.newUser).subscribe();
+    this.router.navigate(['login']);
   }
 
   resetForm(forma: NgForm) {
@@ -27,7 +30,9 @@ export class RegisterComponent implements OnInit {
   }
 
   constructor(
-    private usersService: UsersService
+    private usersService: UsersService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
