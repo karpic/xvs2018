@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
+import { TokenStorage } from '../../services/auth/token.storage';
 
 @Component({
   selector: 'app-login',
@@ -7,12 +10,24 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  username: string = "";
+  password: string = "";
 
   onLoginFormSubmit(forma: NgForm) {
-
+    this.authService.attemptAuth(this.username, this.password).subscribe(
+      data => {
+        this.token.saveToken(data.token);
+        this.router.navigate(['search']);
+      }
+    )
   }
 
-  constructor() { }
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private token: TokenStorage,
+  ) { }
 
   ngOnInit() {
   }
