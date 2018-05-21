@@ -18,12 +18,15 @@ import { AccommodationItemComponent } from './search/search-list/accommodation-i
 import { ReservationsComponent } from './reservations/reservations.component';
 import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
 import { AccommodationViewComponent } from './views/accommodation-view/accommodation-view.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReservationsService } from './services/reservations.service';
 import { UsersService } from './services/users.service';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { UserImpressionComponent } from './reservations/user-impression/user-impression.component';
 import { MessagesComponent } from './reservations/messages/messages.component';
+import { TokenStorage } from './services/auth/token.storage';
+import { AuthService } from './services/auth/auth.service';
+import { Interceptor } from './services/auth/interceptor';
 
 
 @NgModule({
@@ -55,7 +58,14 @@ import { MessagesComponent } from './reservations/messages/messages.component';
     ReservationsService,
     CategoryService,
     UsersService,
-    MockDataService
+    MockDataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi : true
+    },
+    TokenStorage,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
