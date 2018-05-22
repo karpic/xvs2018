@@ -5,7 +5,7 @@
     <p class="list-group-item-text">Reservation to: {{reservation.endingDate}}</p>
   </div>
   <div class="pull-right">
-    <button class="btn btn-default" [routerLink]="['../messages']"><i class="glyphicon glyphicon-envelope"></i> Messages</button>
+    <button class="btn btn-default" (click)="messagesClicked(reservation)"><i class="glyphicon glyphicon-envelope"></i> Messages</button>
     <button *ngIf="reservation.confirmed" class="btn btn-success" (click)="reviewClicked(reservation)"><i class="glyphicon glyphicon-thumbs-up"></i> Review</button>
     <button class="btn btn-danger" (click)="cancelReservation(reservation)"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
   </div>

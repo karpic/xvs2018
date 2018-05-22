@@ -30,12 +30,17 @@ export class ReservationsComponent implements OnInit {
 
   reviewClicked(reservationView: ReservationView) {
     this.dataService.changeReservationView(reservationView);
-    this.router.navigate(["../review"],   {relativeTo: this.route});
+    this.router.navigate(["../review"], {relativeTo: this.route});
   }
 
   cancelReservation(reservation: ReservationView){
     this.reservationsService.cancelReservation(reservation.id).subscribe();
     this.reservationsList = this.reservationsList.filter(r => r !== reservation);
+  }
+
+  messagesClicked(reservation: ReservationView) {
+    this.dataService.changeReservationView(reservation);
+    this.router.navigate(["../messages"], {relativeTo: this.route})
   }
 
   constructor(
