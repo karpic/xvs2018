@@ -7,6 +7,6 @@
   <div class="pull-right">
     <button class="btn btn-default" [routerLink]="['../messages']"><i class="glyphicon glyphicon-envelope"></i> Messages</button>
     <button *ngIf="reservation.confirmed" class="btn btn-success" (click)="reviewClicked(reservation)"><i class="glyphicon glyphicon-thumbs-up"></i> Review</button>
-    <button class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
+    <button class="btn btn-danger" (click)="cancelReservation(reservation)"><i class="glyphicon glyphicon-remove"></i> Cancel</button>
   </div>
 </a>

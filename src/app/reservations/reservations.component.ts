@@ -33,6 +33,11 @@ export class ReservationsComponent implements OnInit {
     this.router.navigate(["../review"],   {relativeTo: this.route});
   }
 
+  cancelReservation(reservation: ReservationView){
+    this.reservationsService.cancelReservation(reservation.id).subscribe();
+    this.reservationsList = this.reservationsList.filter(r => r !== reservation);
+  }
+
   constructor(
     private reservationsService: ReservationsService,
     private mockData: MockDataService,
