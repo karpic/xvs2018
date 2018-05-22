@@ -16,10 +16,11 @@ export class ReservationsService {
   private url = 'http://localhost:8080/api/reservation';
 
   getMyReservations(): Observable<any> {
-    return this.http.get<any>(this.url+'/myreseravtions', httpOptions);
+    return this.http.get<any>(this.url+'/myreservations', httpOptions);
   }
 
   reserve(reservation: ReservationCreation): Observable<any> {
+    console.log(reservation);
     return this.http.post<any>(this.url+'/reserve', reservation, httpOptions).pipe(
       catchError(this.handleError<any>('reserve'))
     );

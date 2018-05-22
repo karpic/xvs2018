@@ -13,10 +13,14 @@ const httpOptions = {
 
 @Injectable()
 export class AuthService {
+  isLoggedIn: boolean;
+
   private url = 'http://localhost:8080/api/auth/login';
   private registerUrl = 'http://localhost:8080/api/auth/register';
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) {
+    this.isLoggedIn = false;
+   }
 
   attemptAuth(ussername: string, password: string): Observable<any> {
     const credentials = {username: ussername, password: password};
