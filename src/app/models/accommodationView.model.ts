@@ -1,3 +1,4 @@
+import { UserImpressionView } from './userImpressionView.model';
 import { AdditionalServiceView } from './additionalServiceView.model';
 import { PricePlanView } from "./pricePlanView.model";
 import { RestrictionView } from "./restrictionView.model";
@@ -15,6 +16,7 @@ export class AccommodationView {
     public pricePlan: Array<PricePlanView>,
     public agentUsername: string,
     public restrictions: Array<RestrictionView>,
-    public categoryName: string
+    public categoryName: string,
+    public userImpressions: Array<UserImpressionView>
   ){}
 }
