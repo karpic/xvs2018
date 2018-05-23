@@ -1,3 +1,5 @@
+import { MessagesService } from './../../services/messages.service';
+import { MessageCreation } from './../../models/messageCreation.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { DataService } from './../../services/dataService.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,6 +14,7 @@ import { ReservationView } from '../../models/reservationView.model';
 export class MessagesComponent implements OnInit {
   messages: MessageView[];
   reservationView: ReservationView;
+  newMessage: MessageCreation;
 
   getMessages() {
     this.dataService.currentReservationView.subscribe(
@@ -22,8 +25,15 @@ export class MessagesComponent implements OnInit {
     )
   }
 
+  sendMessage() {
+    this.newMessage.reservationId = this.reservationView.id;
+    //Kako da nam kome saljem poruku
+    //this.newMessage.toUserId =
+  }
+
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private messagesService: MessagesService
   ) { }
 
   ngOnInit() {

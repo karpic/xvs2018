@@ -1,3 +1,4 @@
+import { MessagesService } from './services/messages.service';
 import { MockDataService } from './services/mockdata/mockdata.service';
 import { CategoryService } from './services/category.service';
 import { AdditionalServicesService } from './services/additionalServices.service';
@@ -27,6 +28,7 @@ import { MessagesComponent } from './reservations/messages/messages.component';
 import { TokenStorage } from './services/auth/token.storage';
 import { AuthService } from './services/auth/auth.service';
 import { Interceptor } from './services/auth/interceptor';
+import { UserImpressionService } from './services/userImpression.service';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { Interceptor } from './services/auth/interceptor';
       multi : true
     },
     TokenStorage,
-    AuthService
+    AuthService,
+    MessagesService,
+    UserImpressionService
   ],
   bootstrap: [AppComponent]
 })

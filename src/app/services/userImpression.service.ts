@@ -1,3 +1,4 @@
+import { UserImpressionCreation } from './../models/userImpressionCreation.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,24 +13,15 @@ const httpOptions = {
 };
 
 @Injectable()
-export class ReservationsService {
-  private url = 'http://localhost:8080/api/reservation';
+export class UserImpressionService {
+  private url = 'http://localhost:8080/api/userimpression/insert';
 
-  getMyReservations(): Observable<any> {
-    return this.http.get<any>(this.url+'/myreservations', httpOptions);
-  }
-
-  reserve(reservation: ReservationCreation): Observable<any> {
-    return this.http.post<any>(this.url+'/reserve', reservation, httpOptions).pipe(
-      catchError(this.handleError<any>('reserve'))
+  insertUserImpression(userImpression: UserImpressionCreation){
+    return this.http.post<any>(this.url, userImpression, httpOptions).pipe(
+      catchError(this.handleError<any>('insertUserImpression'))
     );
   }
 
-  cancelReservation(id: number) {
-    return this.http.delete<any>(this.url+'/cancel?id='+id, httpOptions).pipe(
-      catchError(this.handleError<any>('cancelReservation'))
-    );
-  }
 
   constructor(
     private http: HttpClient

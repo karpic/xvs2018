@@ -1,7 +1,9 @@
+import { UserImpressionService } from './../../services/userImpression.service';
 import { UserImpressionCreation } from './../../models/userImpressionCreation.model';
 import { DataService } from './../../services/dataService.service';
 import { Component, OnInit } from '@angular/core';
 import { ReservationView } from '../../models/reservationView.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-impression',
@@ -17,23 +19,25 @@ export class UserImpressionComponent implements OnInit {
     this.dataService.currentReservationView.subscribe(
       reservation => {
         this.reservationView = reservation;
-        console.log(this.reservationView);
       }
     )
   }
 
   updateStarNumber(star: number) {
     this.starNumber = star;
-    console.log(this.starNumber);
   }
 
   createReview() {
     this.userImpressionCreation.accommodationId = this.reservationView.accommodationId;
     this.userImpressionCreation.rating = this.starNumber;
+    this.userImpressionService.insertUserImpression(this.userImpressionCreation).subscribe();
+    this.location.back();
   }
 
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private userImpressionService: UserImpressionService,
+    private location: Location
   ) { }
 
   ngOnInit() {
