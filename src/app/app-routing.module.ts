@@ -1,3 +1,4 @@
+import { LoggedInGuard } from './auth/guards/loggedInGuard.service';
 import { MessagesComponent } from './reservations/messages/messages.component';
 import { UserImpressionComponent } from './reservations/user-impression/user-impression.component';
 import { NewReservationComponent } from './reservations/new-reservation/new-reservation.component';
@@ -5,7 +6,7 @@ import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, Router, RouterModule } from '@angular/router';
+import { Routes, Router, RouterModule, CanActivate } from '@angular/router';
 import { RegisterComponent } from './auth/register/register.component';
 import { AccommodationViewComponent } from './views/accommodation-view/accommodation-view.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
@@ -16,8 +17,8 @@ const routes: Routes = [
  { path: 'register', component: RegisterComponent},
  { path: 'search', component: SearchComponent },
  { path: 'accommodation/:id', component: AccommodationViewComponent},
- { path: 'newreservation', component: NewReservationComponent},
- { path: 'userprofile', component: UserprofileComponent, children: [
+ { path: 'newreservation', component: NewReservationComponent, canActivate: [LoggedInGuard]},
+ { path: 'userprofile', component: UserprofileComponent, canActivate: [LoggedInGuard], children: [
    { path: 'reservations', component: ReservationsComponent},
    //component path below are for testing purposes
    { path: 'review', component: UserImpressionComponent},

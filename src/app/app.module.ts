@@ -1,3 +1,4 @@
+import { LoggedInGuard } from './auth/guards/loggedInGuard.service';
 import { MessagesService } from './services/messages.service';
 import { MockDataService } from './services/mockdata/mockdata.service';
 import { CategoryService } from './services/category.service';
@@ -69,7 +70,8 @@ import { UserImpressionService } from './services/userImpression.service';
     TokenStorage,
     AuthService,
     MessagesService,
-    UserImpressionService
+    UserImpressionService,
+    LoggedInGuard
   ],
   bootstrap: [AppComponent]
 })

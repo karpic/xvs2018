@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
       data => {
         this.token.saveToken(data.token);
         this.authService.toggleLoggedIn();
+        window.sessionStorage.setItem('username', data.user.username);
         this.router.navigate(['search']);
       }
     )

@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     window.sessionStorage.removeItem(TOKEN_KEY);
+    window.sessionStorage.removeItem('username');
     window.sessionStorage.clear();
     this.authService.toggleLoggedIn();
     this.router.navigate(['login']);
