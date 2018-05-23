@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     this.authService.attemptAuth(this.username, this.password).subscribe(
       data => {
         this.token.saveToken(data.token);
-        this.authService.isLoggedIn = true;
+        this.authService.toggleLoggedIn();
         this.router.navigate(['search']);
       }
     )

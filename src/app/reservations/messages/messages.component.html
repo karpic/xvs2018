@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="panel panel-default">
-          <div class="panel-heading">Messages for reservation --insert reservatino name--</div>
+          <div class="panel-heading">Messages for reservation {{reservationView.accommodatioName}}</div>
           <div class="panel-body">
             <div class="container">
                 <!-- <div class="row message-bubble">
@@ -11,13 +11,14 @@
                 <div class="row message-bubble" *ngFor="let message of messages">
                     <p class="text-muted">{{message.fromUserUsername}}</p>
                     <p>{{message.content}}</p>
+                    <p class="pull-right">{{message.dateSent | date}}</p>
                 </div>
             </div>
             <div class="panel-footer">
                  <div class="input-group">
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control" [(ngModel)]="newMessage.content">
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Send</button>
+                    <button class="btn btn-default" type="button" (click)="sendMessage()">Send</button>
                   </span>
                 </div>
             </div>

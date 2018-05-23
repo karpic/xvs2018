@@ -1,7 +1,7 @@
 export class MessageCreation {
   constructor(
     public content: string,
-    public toUserId: number,
+    public toUserUsername: string,
     public reservationId: number
   ){}
 }

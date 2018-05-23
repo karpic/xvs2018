@@ -3,8 +3,6 @@
     <div class="col-xs-10">
         <h2>{{accommodation.name}}</h2>
         <ul class="list-inline">
-            <li><a href="#">2 Days Ago</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-star"></i>4.3</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-user"></i>{{accommodation.agentUsername}}</a></li>
           </ul>
     </div>
@@ -45,10 +43,22 @@
   <hr>
   <br>
   <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-6">
         <h4>Price plan</h4>
-        <p>Current: 150$</p>
-        <p class="lead"><button class="btn btn-default">See full price plan</button></p>
+        <p>Current: {{currentPrice}}$</p>
+        <p class="lead"><button class="btn btn-default" (click)="pricePlanHidden=!pricePlanHidden">See full price plan</button></p>
+
+        <div *ngFor="let pricePlan of accommodation.pricePlan" [hidden]="pricePlanHidden">
+          <p>From: {{pricePlan.startingDate}} to: {{pricePlan.endingDate}} Price: <b>{{pricePlan.price}}</b></p>
+        </div>
+    </div>
+
+    <div class="col-xs-6">
+      <h4>Accommodation is not available on the following dates</h4>
+
+      <div *ngFor="let restriction of accommodation.restrictions">
+        <p>From: {{restriction.restrictionFrom}} to {{restriction.restrictionTo}}</p>
+      </div>
     </div>
   </div>
 

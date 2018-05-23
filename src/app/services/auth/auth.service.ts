@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserCreation } from '../../models/userCreation.model';
+
+const TOKEN_KEY = 'AuthToken';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,12 +16,13 @@ const httpOptions = {
 @Injectable()
 export class AuthService {
   isLoggedIn: boolean;
+  @Output() change: EventEmitter<boolean> = new EventEmitter();
 
   private url = 'http://localhost:8080/api/auth/login';
   private registerUrl = 'http://localhost:8080/api/auth/register';
 
   constructor(private http: HttpClient) {
-    this.isLoggedIn = false;
+    //this.isLoggedIn = false;
    }
 
   attemptAuth(ussername: string, password: string): Observable<any> {
@@ -32,6 +35,20 @@ export class AuthService {
     return this.http.post<UserCreation>(this.registerUrl, user, httpOptions).pipe(
       catchError(this.handleError<any>('registerUser'))
     );
+  }
+
+  checkIfLoggedIn(): boolean {
+    return this.isLoggedIn;
+  }
+
+  toggleLoggedIn() {
+    if (sessionStorage.getItem(TOKEN_KEY) != null) {
+      this.isLoggedIn = true;
+      this.change.emit(this.isLoggedIn);
+    } else {
+      this.isLoggedIn = false;
+      this.change.emit(this.isLoggedIn);
+    }
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

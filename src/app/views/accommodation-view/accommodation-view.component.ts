@@ -12,18 +12,34 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class AccommodationViewComponent implements OnInit {
   id: number;
   accommodation: AccommodationView = new AccommodationView(1,'','','','',[],1,[],[],'',[],'');
+  currentPrice: number;
+  pricePlanHidden: boolean;
 
   getAccommodation(){
     this.accommodationService.getOne(this.id).subscribe(
-      (responseData) => {this.accommodation = responseData;
-      console.log(this.accommodation);}
+      (responseData) => {
+        this.accommodation = responseData;
+        this.checkCurrentPrice();
+    }
     )
+  }
+
+  checkCurrentPrice() {
+    let currentDate = new Date();
+    for(let pricePlan of this.accommodation.pricePlan) {
+      if(currentDate > pricePlan.startingDate && currentDate < pricePlan.endingDate){
+        this.currentPrice = pricePlan.price;
+        break;
+      }
+    }
   }
 
   constructor(
     private route: ActivatedRoute,
     private accommodationService: AccommodationService
-  ) { }
+  ) {
+    this.pricePlanHidden = true;
+  }
 
   ngOnInit() {
     this.route.params.subscribe(

@@ -3,6 +3,7 @@ export class MessageView {
     public id: number,
     public content: string,
     public fromUserUsername: string,
-    public toUserUsername: string
+    public toUserUsername: string,
+    public dateSent: Date
   ){}
 }

@@ -2,7 +2,7 @@ import { MessagesService } from './../../services/messages.service';
 import { MessageCreation } from './../../models/messageCreation.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { DataService } from './../../services/dataService.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageView } from '../../models/messageView.model';
 import { ReservationView } from '../../models/reservationView.model';
 
@@ -14,13 +14,16 @@ import { ReservationView } from '../../models/reservationView.model';
 export class MessagesComponent implements OnInit {
   messages: MessageView[];
   reservationView: ReservationView;
-  newMessage: MessageCreation;
-
+  newMessage: MessageCreation = new MessageCreation('','',0);
+  //@ViewChild('messageBox') messageBox
   getMessages() {
     this.dataService.currentReservationView.subscribe(
       reservation => {
         this.reservationView = reservation;
         this.messages = reservation.messages;
+
+        //sortinranje poruka po datumu
+
       }
     )
   }
@@ -28,7 +31,19 @@ export class MessagesComponent implements OnInit {
   sendMessage() {
     this.newMessage.reservationId = this.reservationView.id;
     //Kako da nam kome saljem poruku
-    //this.newMessage.toUserId =
+    let username = '';
+    if(this.messages[0].fromUserUsername==this.reservationView.registeredUserUsername){
+      username = this.messages[0].toUserUsername;
+    }
+    else{
+      username = this.messages[0].fromUserUsername;
+    }
+    this.newMessage.toUserUsername = username;
+    this.messagesService.insertMessage(this.newMessage).subscribe(
+      (createdMessage) => {
+        this.messages.push(createdMessage);
+      }
+    );
   }
 
   constructor(
