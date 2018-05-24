@@ -58,9 +58,9 @@
 
   <div class="col-xs-4">
     <h3>Accommodation type</h3>
-    <div class="input-group">
-        <input type="text" class="form-control" [(ngModel)]="searchAccommodationType">
-    </div>
+    <div class="radio" *ngFor="let type of accommodationTypes">
+      <label><input type="radio" name="radioValue{{type.id}}" [value]="type" [(ngModel)]="searchAccommodationType">{{type.name}}</label>
+  </div>
   </div>
 </div>
 <hr>
@@ -73,6 +73,6 @@
 
 <ul class="pager" *ngIf="accommodationList.length>0">
   <li class="previous"><a (click)="previousPage()">Previous</a></li>
-  <li>{{currentPage}}</li>
+  <li>{{currentPage + 1}}</li>
   <li class="next"><a (click)="nextPage()">Next</a></li>
 </ul>

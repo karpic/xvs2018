@@ -1,3 +1,5 @@
+import { AccommodationTypeService } from './../services/accommodationType.service';
+import { AccommodationTypeView } from './../models/accommodationTypeView.model';
 import { CategoryView } from './../models/categoryView.model';
 import { AccommodationService } from './../services/accommodation.service';
 import { AccommodationView } from './../models/accommodationView.model';
@@ -13,6 +15,7 @@ import { CategoryService } from '../services/category.service';
 })
 export class SearchComponent implements OnInit {
   additonalServices: AdditionalServiceView[];
+  accommodationTypes: AccommodationTypeView[];
   categories: CategoryView[];
   accommodationList: AccommodationView[] = [];
   additionalSearchOptionsHidden: boolean = true;
@@ -27,7 +30,7 @@ export class SearchComponent implements OnInit {
   //additionalSearchOptions
   searchCategoryName: CategoryView;
   searchAdditionalServices: AdditionalServiceView[] = [];
-  searchAccommodationType: string;
+  searchAccommodationType: AccommodationTypeView;
 
   //search results
   numberOfPages: number;
@@ -50,6 +53,14 @@ export class SearchComponent implements OnInit {
     );
   }
 
+  getAccommodationTypes() {
+    this.accommodationTypeService.getAll().subscribe(
+      responseData => {
+        this.accommodationTypes = responseData['content']
+      }
+    );
+  }
+
   appendAdditionalServiceForSearch(service: AdditionalServiceView) {
     this.searchAdditionalServices.push(service);
   }
@@ -57,11 +68,9 @@ export class SearchComponent implements OnInit {
   searchButtonClicked() {
     if(this.additionalSearchOptionsHidden) {
       this.searchSimple(0);
-      //this.currentPage = 0;
     }
     else{
       this.searchAdditional(0);
-      //this.currentPage = 0;
     }
   }
 
@@ -69,7 +78,7 @@ export class SearchComponent implements OnInit {
     this.accommodationService.simpleSearch(this.location, this.capacity, pageNumber).subscribe(
       responseData => {
         this.accommodationList = responseData['content'];
-        this.numberOfPages = responseData.pageable.pageNumber;
+        this.numberOfPages = responseData.totalPages;
         this.totalNumberOfElements = responseData.totalElements;
         this.currentPage = responseData.pageable.pageNumber;
       }
@@ -77,7 +86,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchAdditional(pageNumber: number) {
-    this.accommodationService.advancedSearch(this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType, this.searchCategoryName, pageNumber).subscribe(
+    this.accommodationService.advancedSearch(this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType.name, this.searchCategoryName, pageNumber).subscribe(
       responseData => {
         this.accommodationList = responseData['content'];
         this.numberOfPages = responseData.totalPages;
@@ -88,29 +97,29 @@ export class SearchComponent implements OnInit {
   }
 
   nextPage() {
-    if(this.additionalSearchOptionsHidden){
-      this.currentPage = this.currentPage + 1;
-      this.searchSimple(this.currentPage);
-      window.scrollTo(0,0);
-    }
-    else{
-      this.currentPage = this.currentPage + 1;
-      this.searchAdditional(this.currentPage);
-      window.scrollTo(0,0);
-    }
+      if(this.additionalSearchOptionsHidden){
+        this.currentPage = this.currentPage + 1;
+        this.searchSimple(this.currentPage);
+        window.scrollTo(0,0);
+      }
+      else{
+        this.currentPage = this.currentPage + 1;
+        this.searchAdditional(this.currentPage);
+        window.scrollTo(0,0);
+      }
   }
 
   previousPage() {
-    if(this.additionalSearchOptionsHidden){
-      this.currentPage = this.currentPage - 1;
-      this.searchSimple(this.currentPage);
-      window.scrollTo(0,0);
-    }
-    else{
-      this.currentPage = this.currentPage - 1;
-      this.searchAdditional(this.currentPage);
-      window.scrollTo(0,0);
-    }
+      if(this.additionalSearchOptionsHidden){
+        this.currentPage = this.currentPage - 1;
+        this.searchSimple(this.currentPage);
+        window.scrollTo(0,0);
+      }
+      else{
+        this.currentPage = this.currentPage - 1;
+        this.searchAdditional(this.currentPage);
+        window.scrollTo(0,0);
+      }
   }
 
 
@@ -118,12 +127,14 @@ export class SearchComponent implements OnInit {
   constructor(
     private additionalServicesService: AdditionalServicesService,
     private accommodationService: AccommodationService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private accommodationTypeService: AccommodationTypeService
   ) { }
 
   ngOnInit() {
     this.getAdditionalServices();
     this.getCategories();
+    this.getAccommodationTypes();
   }
 
 }

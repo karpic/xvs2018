@@ -30,6 +30,7 @@ import { TokenStorage } from './services/auth/token.storage';
 import { AuthService } from './services/auth/auth.service';
 import { Interceptor } from './services/auth/interceptor';
 import { UserImpressionService } from './services/userImpression.service';
+import { AccommodationTypeService } from './services/accommodationType.service';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { UserImpressionService } from './services/userImpression.service';
     AuthService,
     MessagesService,
     UserImpressionService,
-    LoggedInGuard
+    LoggedInGuard,
+    AccommodationTypeService
   ],
   bootstrap: [AppComponent]
 })

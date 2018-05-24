@@ -1,8 +1,9 @@
+import { DataService } from './../../services/dataService.service';
 import { AccommodationTypeView } from './../../models/accommodationTypeView.model';
 import { AccommodationView } from './../../models/accommodationView.model';
 import { AccommodationService } from './../../services/accommodation.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -54,9 +55,16 @@ export class AccommodationViewComponent implements OnInit {
     return new Array(i);
   }
 
+  reservationClicked() {
+    this.dataService.changeAccommodationView(this.accommodation);
+    this.router.navigate(['newreservation']);
+  }
+
   constructor(
     private route: ActivatedRoute,
-    private accommodationService: AccommodationService
+    private accommodationService: AccommodationService,
+    private dataService: DataService,
+    private router: Router
   ) {
     this.pricePlanHidden = true;
   }
