@@ -77,7 +77,7 @@
               </div>
               <div class="col-md-9">
                 <div class="ratebox text-center" data-id="0" data-rating="5"></div>
-                <p class="review-text">{{review.comment}}</p>
+                <p class="review-text" *ngIf="review.verified">{{review.comment}}</p>
               </div>
               <div class="col-md-9">
                   <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align" *ngFor="let num of counter(review.rating)">
