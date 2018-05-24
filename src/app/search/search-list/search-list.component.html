@@ -1,4 +1,4 @@
-<p class="lead pull-right" *ngIf="accommodationList.length>0">{{numberOfPages + 1}} page(s), {{numberOfElements}} accommodations found</p>
+<p class="lead pull-right" *ngIf="accommodationList.length>0">{{numberOfPages}} page(s), {{numberOfElements}} accommodations found</p>
 <app-accommodation-item *ngFor="let accommodationItem of accommodationList" [accommodation]="accommodationItem" [displayReservationButton]="true"></app-accommodation-item>
 
 

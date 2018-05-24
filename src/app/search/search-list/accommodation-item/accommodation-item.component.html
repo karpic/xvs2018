@@ -2,7 +2,11 @@
     <br>
     <div class="col-md-2 col-sm-3 text-center">
       <br><br>
-      <a *ngIf="accommodation.images" class="story-img" href="#"><img [src]="accommodation.images[0].path" style="width:100px;height:100px" class="img-circle"></a>
+      <a *ngIf="accommodation.images.length > 0;else noImage" class="story-img" href="#"><img [src]="accommodation.images[0].path" style="width:100px;height:100px" class="img-circle"></a>
+      <ng-template #noImage>
+        <a class="story-img" href="#"><img src="../../../../assets/no_image_available.jpeg" style="width:100px;height:100px" class="img-circle"></a>
+      </ng-template>
+
     </div>
     <div class="col-md-10 col-sm-9">
       <h3>{{accommodation.name}}</h3>

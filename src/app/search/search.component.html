@@ -72,6 +72,7 @@
 </app-search-list>
 
 <ul class="pager" *ngIf="accommodationList.length>0">
-  <li class="previous"><a href="">Previous</a></li>
-  <li class="next"><a href="">Next</a></li>
+  <li class="previous"><a (click)="previousPage()">Previous</a></li>
+  <li>{{currentPage}}</li>
+  <li class="next"><a (click)="nextPage()">Next</a></li>
 </ul>

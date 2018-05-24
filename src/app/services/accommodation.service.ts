@@ -23,7 +23,7 @@ export class AccommodationService {
   }
 
   simpleSearch(location: string, numOfPeople: number, pageNumber: number): Observable<any> {
-    return this.http.get<any>(this.url+'location=' + location +'&capacity='+numOfPeople + '&page=' + pageNumber + '&size=10&sort=name,desc', httpOptions);
+    return this.http.get<any>(this.url+'location=' + location +'&capacity='+numOfPeople + '&page=' + pageNumber + '&size=5&sort=name,desc', httpOptions);
   }
 
   advancedSearch(location: string, numOfPeople:number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number): Observable<any> {
@@ -43,7 +43,7 @@ export class AccommodationService {
     //append category
     searchUrl = searchUrl + '&category=' + accommodationCategory.name;
 
-    searchUrl = searchUrl + '&page=' + pageNumber + '&size=10&sort=name,desc'
+    searchUrl = searchUrl + '&page=' + pageNumber + '&size=5&sort=name,desc'
     console.log(searchUrl);
 
     return this.http.get<any>(searchUrl, httpOptions);

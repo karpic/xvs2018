@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit {
   //search results
   numberOfPages: number;
   totalNumberOfElements: number;
+  currentPage: number;
 
   getAdditionalServices(){
     this.additionalServicesService.getAll().subscribe(
@@ -55,32 +56,64 @@ export class SearchComponent implements OnInit {
 
   searchButtonClicked() {
     if(this.additionalSearchOptionsHidden) {
-      this.searchSimple();
+      this.searchSimple(0);
+      //this.currentPage = 0;
     }
     else{
-      this.searchAdditional();
+      this.searchAdditional(0);
+      //this.currentPage = 0;
     }
   }
 
-  searchSimple() {
-    this.accommodationService.simpleSearch(this.location, this.capacity, 0).subscribe(
+  searchSimple(pageNumber: number) {
+    this.accommodationService.simpleSearch(this.location, this.capacity, pageNumber).subscribe(
       responseData => {
         this.accommodationList = responseData['content'];
         this.numberOfPages = responseData.pageable.pageNumber;
         this.totalNumberOfElements = responseData.totalElements;
+        this.currentPage = responseData.pageable.pageNumber;
       }
     )
   }
 
-  searchAdditional() {
-    this.accommodationService.advancedSearch(this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType, this.searchCategoryName, 0).subscribe(
+  searchAdditional(pageNumber: number) {
+    this.accommodationService.advancedSearch(this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType, this.searchCategoryName, pageNumber).subscribe(
       responseData => {
         this.accommodationList = responseData['content'];
-        this.numberOfPages = responseData.pageable.pageNumber;
+        this.numberOfPages = responseData.totalPages;
         this.totalNumberOfElements = responseData.totalElements;
+        this.currentPage = responseData.pageable.pageNumber;
       }
     );
   }
+
+  nextPage() {
+    if(this.additionalSearchOptionsHidden){
+      this.currentPage = this.currentPage + 1;
+      this.searchSimple(this.currentPage);
+      window.scrollTo(0,0);
+    }
+    else{
+      this.currentPage = this.currentPage + 1;
+      this.searchAdditional(this.currentPage);
+      window.scrollTo(0,0);
+    }
+  }
+
+  previousPage() {
+    if(this.additionalSearchOptionsHidden){
+      this.currentPage = this.currentPage - 1;
+      this.searchSimple(this.currentPage);
+      window.scrollTo(0,0);
+    }
+    else{
+      this.currentPage = this.currentPage - 1;
+      this.searchAdditional(this.currentPage);
+      window.scrollTo(0,0);
+    }
+  }
+
+
 
   constructor(
     private additionalServicesService: AdditionalServicesService,
