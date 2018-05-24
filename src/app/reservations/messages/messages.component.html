@@ -9,14 +9,13 @@
                     <span>Why is yo shit so broke?</span>
                 </div> -->
                 <div class="row message-bubble" *ngFor="let message of messages">
-                    <p class="text-muted">{{message.fromUserUsername}}</p>
+                    <p class="text-muted">{{message.fromUserUsername}}  ({{message.dateSent}})</p>
                     <p>{{message.content}}</p>
-                    <p class="pull-right">{{message.dateSent | date}}</p>
                 </div>
             </div>
             <div class="panel-footer">
                  <div class="input-group">
-                  <input type="text" class="form-control" [(ngModel)]="newMessage.content">
+                  <input type="text" class="form-control" [(ngModel)]="newMessage.content" #messageBox>
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="button" (click)="sendMessage()">Send</button>
                   </span>
