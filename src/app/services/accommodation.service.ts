@@ -18,15 +18,15 @@ export class AccommodationService {
   private baseUrl = 'http://localhost:8080/api/accommodation';
   private url = 'http://localhost:8080/api/accommodation/all?';
 
-  findOne(id: number): Observable<any>{
-    return this.http.get<any>(this.url+'=id:'+id, httpOptions);
+  findOne(id: number): Observable<any> {
+    return this.http.get<any>(this.url + '=id:' + id, httpOptions);
   }
 
   simpleSearch(location: string, numOfPeople: number, pageNumber: number): Observable<any> {
-    return this.http.get<any>(this.url+'location=' + location +'&capacity='+numOfPeople + '&page=' + pageNumber + '&size=5&sort=name,desc', httpOptions);
+    return this.http.get<any>(this.url + 'location=' + location + '&capacity=' + numOfPeople + '&page=' + pageNumber + '&size=5&sort=name,desc', httpOptions);
   }
 
-  advancedSearch(location: string, numOfPeople:number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number): Observable<any> {
+  advancedSearch(location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number): Observable<any> {
     let searchUrl: string = this.url;
     //appendLocation
     searchUrl = searchUrl + 'location=' + location;
@@ -34,8 +34,8 @@ export class AccommodationService {
     searchUrl = searchUrl + '&capacity=' + numOfPeople;
 
     //append additional services
-    for(let service of services){
-      searchUrl = searchUrl + '&service='+service.serviceName;
+    for (let service of services) {
+      searchUrl = searchUrl + '&service=' + service.serviceName;
     }
 
     //append accommodationType
@@ -50,14 +50,14 @@ export class AccommodationService {
   }
 
   getOne(id: number): Observable<AccommodationView> {
-    return this.http.get<AccommodationView>(this.baseUrl+'?id='+id, httpOptions);
+    return this.http.get<AccommodationView>(this.baseUrl + '?id=' + id, httpOptions);
   }
 
   constructor(
     private http: HttpClient
   ) { }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

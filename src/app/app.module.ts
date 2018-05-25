@@ -31,6 +31,8 @@ import { AuthService } from './services/auth/auth.service';
 import { Interceptor } from './services/auth/interceptor';
 import { UserImpressionService } from './services/userImpression.service';
 import { AccommodationTypeService } from './services/accommodationType.service';
+import { RegistrationConfirmationPageComponent } from './auth/register/registration-confirmation-page/registration-confirmation-page.component';
+import { ReservationConfirmationPageComponent } from './reservations/new-reservation/reservation-confirmation-page/reservation-confirmation-page.component';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { AccommodationTypeService } from './services/accommodationType.service';
     UserprofileComponent,
     UserImpressionComponent,
     MessagesComponent,
+    RegistrationConfirmationPageComponent,
+    ReservationConfirmationPageComponent,
   ],
   imports: [
     FormsModule,

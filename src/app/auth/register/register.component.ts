@@ -1,3 +1,4 @@
+import { UserView } from './../../models/userView.model';
 import { UserCreation } from './../../models/userCreation.model';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -12,7 +13,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   newUser: UserCreation = new UserCreation('','','','','', new Date());
-
+  registeredUser: UserView;
+  registered: boolean;
 
   onRegisterFormSubmit(forma: NgForm) {
     this.newUser.firstName = forma.value.firstname;
@@ -21,8 +23,13 @@ export class RegisterComponent implements OnInit {
     this.newUser.username = forma.value.username;
     this.newUser.password = forma.value.password;
 
-    this.authService.registerUser(this.newUser).subscribe();
-    this.router.navigate(['login']);
+    this.authService.registerUser(this.newUser).subscribe(
+      (registeredUser) => {
+        this.registeredUser = registeredUser;
+        this.registered = true;
+      }
+    );
+    //this.router.navigate(['login']);
   }
 
   resetForm(forma: NgForm) {
@@ -33,7 +40,9 @@ export class RegisterComponent implements OnInit {
     private usersService: UsersService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    this.registered = false;
+   }
 
   ngOnInit() {
   }

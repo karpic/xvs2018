@@ -1,34 +1,46 @@
 <div class="row">
+  <br>
+  <div class="col-md-2 col-sm-3 text-center">
     <br>
-    <div class="col-md-2 col-sm-3 text-center">
-      <br><br>
-      <a *ngIf="accommodation.images.length > 0;else noImage" class="story-img" href="#"><img [src]="accommodation.images[0].path" style="width:100px;height:100px" class="img-circle"></a>
-      <ng-template #noImage>
-        <a class="story-img" href="#"><img src="../../../../assets/no_image_available.jpeg" style="width:100px;height:100px" class="img-circle"></a>
-      </ng-template>
+    <br>
+    <a *ngIf="accommodation.images.length > 0;else noImage" class="story-img" href="#">
+      <img [src]="accommodation.images[0].path" style="width:100px;height:100px" class="img-circle">
+    </a>
+    <ng-template #noImage>
+      <a class="story-img" href="#">
+        <img src="../../../../assets/no_image_available.jpeg" style="width:100px;height:100px" class="img-circle">
+      </a>
+    </ng-template>
 
-    </div>
-    <div class="col-md-10 col-sm-9">
-      <h3>{{accommodation.name}}</h3>
-      <div class="row">
-        <div class="col-xs-9">
-          <div class="row">
-            <div class="col-xs-6">
-                <p>{{accommodation.description}}</p>
-                    <p>Price: </p>
-            </div>
-            <div class="col-xs-3">
-                <p>Price: <b>Some Price</b></p>
-                <p>Category: <b>{{accommodation.categoryName}}</b></p>
-                <button type="button" class="btn btn-primary" (click)="reservationClicked()" *ngIf="displayReservationButton">Reservation</button>
-            </div>
-          </div>
-          <p class="lead"><button class="btn btn-default" (click)="readMoreClicked()">Read More</button></p>
-          <!-- <ul class="list-inline"><li><a href="#">2 Days Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-star"></i>4.3</a></li></ul> -->
-          </div>
-        <div class="col-xs-3"></div>
-      </div>
-      <br><br>
-    </div>
   </div>
-  <hr>
+  <div class="col-md-10 col-sm-9">
+    <h3>{{accommodation.name}}</h3>
+    <div class="row">
+      <div class="col-xs-9">
+        <div class="row">
+          <div class="col-xs-6">
+            <p>{{accommodation.description}}</p>
+            <p>Price: </p>
+          </div>
+          <div class="col-xs-3">
+            <p>Price:
+              <b>Some Price</b>
+            </p>
+            <p>Category:
+              <b>{{accommodation.categoryName}}</b>
+            </p>
+            <button type="button" class="btn btn-primary" (click)="reservationClicked()" *ngIf="displayReservationButton">Reservation</button>
+          </div>
+        </div>
+        <p class="lead">
+          <button class="btn btn-default" (click)="readMoreClicked()">Read More</button>
+        </p>
+        <!-- <ul class="list-inline"><li><a href="#">2 Days Ago</a></li><li><a href="#"><i class="glyphicon glyphicon-star"></i>4.3</a></li></ul> -->
+      </div>
+      <div class="col-xs-3"></div>
+    </div>
+    <br>
+    <br>
+  </div>
+</div>
+<hr>
