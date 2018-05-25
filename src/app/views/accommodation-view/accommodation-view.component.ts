@@ -1,3 +1,4 @@
+import { DateParser } from './../../services/dateParser.service';
 import { DataService } from './../../services/dataService.service';
 import { AccommodationTypeView } from './../../models/accommodationTypeView.model';
 import { AccommodationView } from './../../models/accommodationView.model';
@@ -24,21 +25,23 @@ export class AccommodationViewComponent implements OnInit {
         this.accommodation = responseData;
         //this.checkCurrentPrice();
         this.calculateRating();
+        this.calculateCurrentPrice();
     }
     )
   }
 
-  checkCurrentPrice() {
-    /* let currentDate = new Date();
-    console.log(currentDate);
-    for(let pricePlan of this.accommodation.pricePlan) {
-      let startingDate = this.datePipe.transform(pricePlan.startingDate, "yyyy-mm-dd");
-      console.log(startingDate);
-      if(currentDate > pricePlan.startingDate && currentDate < pricePlan.endingDate){
+  //jebo sam joj majku
+  calculateCurrentPrice() {
+    const currentDate: Date = new Date();
+    const currentDateISO: Date = new Date(currentDate.toISOString());
+    for(let pricePlan of this.accommodation.pricePlan){
+      let curr = new Date(currentDateISO);
+      let starting = new Date(this.dateParser.parseDateSimple(pricePlan.startingDate.toString()));
+      let ending = new Date(this.dateParser.parseDateSimple(pricePlan.endingDate.toString()));
+      if(curr > starting && curr < ending){
         this.currentPrice = pricePlan.price;
-        break;
       }
-    } */
+    }
   }
 
   calculateRating() {
@@ -64,7 +67,8 @@ export class AccommodationViewComponent implements OnInit {
     private route: ActivatedRoute,
     private accommodationService: AccommodationService,
     private dataService: DataService,
-    private router: Router
+    private router: Router,
+    private dateParser: DateParser
   ) {
     this.pricePlanHidden = true;
   }

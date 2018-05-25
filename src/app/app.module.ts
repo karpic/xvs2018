@@ -1,3 +1,4 @@
+import { DateParser } from './services/dateParser.service';
 import { LoggedInGuard } from './auth/guards/loggedInGuard.service';
 import { MessagesService } from './services/messages.service';
 import { MockDataService } from './services/mockdata/mockdata.service';
@@ -77,7 +78,8 @@ import { ReservationConfirmationPageComponent } from './reservations/new-reserva
     MessagesService,
     UserImpressionService,
     LoggedInGuard,
-    AccommodationTypeService
+    AccommodationTypeService,
+    DateParser
   ],
   bootstrap: [AppComponent]
 })
