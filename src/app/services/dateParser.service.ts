@@ -37,4 +37,14 @@ export class DateParser {
     returnDate.setFullYear(+yearArray[2]);
     return returnDate;
   }
+
+  parseDateSimpleYearFirst(dateString: string) {
+    var yearArray: string[] = dateString.split(" ")[0].split("-");
+    var returnDate = new Date();
+
+    returnDate.setDate(+yearArray[2]);
+    returnDate.setMonth(+yearArray[1] - 1);
+    returnDate.setFullYear(+yearArray[0]);
+    return returnDate;
+  }
 }

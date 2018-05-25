@@ -30,7 +30,6 @@ export class AccommodationViewComponent implements OnInit {
     )
   }
 
-  //jebo sam joj majku
   calculateCurrentPrice() {
     const currentDate: Date = new Date();
     const currentDateISO: Date = new Date(currentDate.toISOString());

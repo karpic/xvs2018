@@ -1,3 +1,4 @@
+import { DateParser } from './../../services/dateParser.service';
 import { DataService } from './../../services/dataService.service';
 import { ReservationCreation } from './../../models/reseravtionCreation.model';
 import { ReservationsService } from './../../services/reservations.service';
@@ -16,6 +17,7 @@ export class NewReservationComponent implements OnInit {
   newReservation: ReservationCreation = new ReservationCreation(undefined, new Date(), new Date());
   createdReservation: ReservationView;
   created: boolean;
+  accommodationAvailable: boolean;
 
   getAccommodation() {
     this.dataService.currentAccommodationView.subscribe(
@@ -25,19 +27,45 @@ export class NewReservationComponent implements OnInit {
 
   onNewReservationSumbit(forma: NgForm) {
     this.newReservation.accommodationId = this.accommodation.id;
-    this.reservationsService.reserve(this.newReservation).subscribe(
-      (createdReservation) => {
-        this.createdReservation = createdReservation;
-        this.created = true;
+    console.log(this.newReservation);
+    if(!this.rangesOverlap()){
+      this.accommodationAvailable = true;
+      this.reservationsService.reserve(this.newReservation).subscribe(
+        (createdReservation) => {
+          this.createdReservation = createdReservation;
+          this.created = true;
+        }
+      );
+    }
+    else{
+      this.accommodationAvailable = false;
+    }
+
+  }
+
+  rangesOverlap(): boolean {
+    //two date ranges overlap if:
+    //(StartDate1 <= EndDate2) and (StartDate2 <= EndDate1)
+    let retVal = false;
+
+    for(let restriction of this.accommodation.restrictions) {
+      //restriction je date2
+      if( (this.dateParser.parseDateSimpleYearFirst(this.newReservation.startingDate.toString()) <= this.dateParser.parseDateSimple(restriction.restrictionTo.toString()))  && (this.dateParser.parseDateSimple(restriction.restrictionFrom.toString()) <= this.dateParser.parseDateSimpleYearFirst(this.newReservation.endingDate.toString()) ))
+      {
+        retVal = true;
       }
-    );
+    }
+
+    return retVal;
   }
 
   constructor(
     private reservationsService: ReservationsService,
-    private dataService: DataService
+    private dataService: DataService,
+    private dateParser: DateParser
   ) {
     this.created = false;
+    this.accommodationAvailable = true;
   }
 
   ngOnInit() {

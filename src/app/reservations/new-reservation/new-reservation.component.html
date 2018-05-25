@@ -1,7 +1,9 @@
 <div *ngIf="!created">
   <div class="row">
-    <h2>Reservation for the following accommodation</h2>
-    <app-accommodation-item [accommodation]="accommodation" [displayReservationButton]="false"></app-accommodation-item>
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <h2>Reservation for the following accommodation</h2>
+      <app-accommodation-item [accommodation]="accommodation" [displayReservationButton]="false"></app-accommodation-item>
+    </div>
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
@@ -13,13 +15,24 @@
         </div>
 
         <div class="form-group">
-          <label for="dateTo">Adresa bioskopa</label>
+          <label for="dateTo">To</label>
           <input type="date" id="dateTo" name="dateTo" class="form-control" required ngModel #dateToRef="ngModel" [(ngModel)]="newReservation.endingDate">
           <span class="help-block" *ngIf="!dateToRef.valid && dateToRef.touched">This field is required!</span>
         </div>
 
         <button type="submit" class="btn btn-primary" [disabled]="!newReservatonForm.valid">Make a reservation</button>
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="!accommodationAvailable">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <h1 style="color: red;">Reservation cannot be made.</h1>
+    <p>Accommodation is not available in that date range. See below for details.</p>
+
+    <div *ngFor="let restriction of accommodation.restrictions">
+      <p>From: <b>{{restriction.restrictionFrom}}</b> to <b>{{restriction.restrictionTo}}</b></p>
     </div>
   </div>
 </div>
