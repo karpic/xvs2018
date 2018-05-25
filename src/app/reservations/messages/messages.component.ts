@@ -1,3 +1,5 @@
+import { AccommodationService } from './../../services/accommodation.service';
+import { AccommodationView } from './../../models/accommodationView.model';
 import { MessagesService } from './../../services/messages.service';
 import { MessageCreation } from './../../models/messageCreation.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -14,7 +16,9 @@ import { ReservationView } from '../../models/reservationView.model';
 export class MessagesComponent implements OnInit {
   messages: MessageView[];
   reservationView: ReservationView;
-  newMessage: MessageCreation = new MessageCreation('','',0);
+  newMessage: MessageCreation = new MessageCreation('', '', 0);
+  accommodation: AccommodationView = null;
+
   @ViewChild('messageBox') messageBox: ElementRef;
 
   getMessages() {
@@ -22,7 +26,8 @@ export class MessagesComponent implements OnInit {
       reservation => {
         this.reservationView = reservation;
         this.messages = reservation.messages;
-
+        this.getAccommodation();
+        console.log(this.accommodation);
         //sortinranje poruka po datumu
         this.messages.sort(
           (a, b) => new Date(this.parseDate(a.dateSent.toString())).getTime() - new Date(this.parseDate(b.dateSent.toString())).getTime()
@@ -49,14 +54,15 @@ export class MessagesComponent implements OnInit {
   sendMessage() {
     this.newMessage.reservationId = this.reservationView.id;
     //Kako da nam kome saljem poruku
-    let username = '';
-    if(this.messages[0].fromUserUsername==this.reservationView.registeredUserUsername){
+    /* let username = '';
+    if (this.messages[0].fromUserUsername == this.reservationView.registeredUserUsername) {
       username = this.messages[0].toUserUsername;
     }
-    else{
+    else {
       username = this.messages[0].fromUserUsername;
-    }
-    this.newMessage.toUserUsername = username;
+    } */
+    this.newMessage.toUserUsername = this.accommodation.agentUsername;
+    console.log(this.accommodation.agentUsername);
     this.messagesService.insertMessage(this.newMessage).subscribe(
       (createdMessage) => {
         this.messages.push(createdMessage);
@@ -65,13 +71,21 @@ export class MessagesComponent implements OnInit {
     );
   }
 
+  getAccommodation() {
+    this.accommodationService.getOne(this.reservationView.accommodationId).subscribe(
+      (response) => this.accommodation = response
+    );
+  }
+
   constructor(
     private dataService: DataService,
-    private messagesService: MessagesService
+    private messagesService: MessagesService,
+    private accommodationService: AccommodationService
   ) { }
 
   ngOnInit() {
     this.getMessages();
+
   }
 
 }
