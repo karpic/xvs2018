@@ -40,29 +40,40 @@
 </div>
 <br>
 <hr>
+<div [hidden]="additionalSearchOptionsHidden">
+  <div class="row">
+    <div class="col-lg-4">
+      <h3>Additional services</h3>
+      <div class="checkbox" *ngFor="let additionalService of additonalServices">
+        <label><input type="checkbox" (click)="appendAdditionalServiceForSearch(additionalService)">{{additionalService.serviceName}}</label>
+      </div>
+    </div>
 
-<div class="row" [hidden]="additionalSearchOptionsHidden">
-  <div class="col-lg-4">
-    <h3>Additional services</h3>
-    <div class="checkbox" *ngFor="let additionalService of additonalServices">
-      <label><input type="checkbox" (click)="appendAdditionalServiceForSearch(additionalService)">{{additionalService.serviceName}}</label>
+    <div class="col-lg-4">
+      <h3>Accommodation categories</h3>
+      <div class="radio" *ngFor="let category of categories">
+          <label><input type="radio" name="radioValue{{category.id}}" [value]="category" [(ngModel)]="searchCategoryName">{{category.name}}</label>
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+      <h3>Accommodation type</h3>
+      <div class="radio" *ngFor="let type of accommodationTypes">
+        <label><input type="radio" name="radioValue{{type.id}}" [value]="type" [(ngModel)]="searchAccommodationType">{{type.name}}</label>
+    </div>
     </div>
   </div>
-
-  <div class="col-lg-4">
-    <h3>Accommodation categories</h3>
-    <div class="radio" *ngFor="let category of categories">
-        <label><input type="radio" name="radioValue{{category.id}}" [value]="category" [(ngModel)]="searchCategoryName">{{category.name}}</label>
+  <div class="row">
+    <div class="col-lg-4">
+      <p>Sortiraj po kategoriji</p>
+      <select name="sortCategory" id="sortCategory" class="form-control">
+        <option value="asc" (click)="sortCategory('asc', 0)">Ascending</option>
+        <option value="desc" (click)="sortCategory('desc', 0)">Descending</option>
+      </select>
     </div>
-  </div>
-
-  <div class="col-xs-4">
-    <h3>Accommodation type</h3>
-    <div class="radio" *ngFor="let type of accommodationTypes">
-      <label><input type="radio" name="radioValue{{type.id}}" [value]="type" [(ngModel)]="searchAccommodationType">{{type.name}}</label>
-  </div>
   </div>
 </div>
+
 <hr>
 <app-search-list
   [accommodationList]="accommodationList"
