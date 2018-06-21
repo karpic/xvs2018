@@ -1,4 +1,8 @@
 <p class="lead pull-right" *ngIf="accommodationList.length>0">{{numberOfPages}} page(s), {{numberOfElements}} accommodations found</p>
-<app-accommodation-item *ngFor="let accommodationItem of accommodationList" [accommodation]="accommodationItem" [displayReservationButton]="true"></app-accommodation-item>
+
+<div id="listAnimation" [@listAnimation]="accommodationList?.length">
+    <app-accommodation-item *ngFor="let accommodationItem of accommodationList" [accommodation]="accommodationItem" [displayReservationButton]="true"></app-accommodation-item>
+</div>
+<!-- <app-accommodation-item *ngFor="let accommodationItem of accommodationList" [accommodation]="accommodationItem" [displayReservationButton]="true"></app-accommodation-item> -->
 
 

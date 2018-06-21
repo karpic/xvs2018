@@ -38,7 +38,7 @@ import { AccommodationTypeService } from './services/accommodationType.service';
 import { RegistrationConfirmationPageComponent } from './auth/register/registration-confirmation-page/registration-confirmation-page.component';
 import { ReservationConfirmationPageComponent } from './reservations/new-reservation/reservation-confirmation-page/reservation-confirmation-page.component';
 import { SingleAccommodationResolver } from './resolvers/singleAccommodation.resolver';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,8 @@ import { SingleAccommodationResolver } from './resolvers/singleAccommodation.res
     FormsModule,
     HttpClientModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AccommodationService,
