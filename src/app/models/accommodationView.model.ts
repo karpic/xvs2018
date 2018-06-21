@@ -17,6 +17,7 @@ export class AccommodationView {
     public agentUsername: string,
     public restrictions: Array<RestrictionView>,
     public categoryName: string,
-    public userImpressions: Array<UserImpressionView>
+    public userImpressions: Array<UserImpressionView>,
+    public rating: number
   ){}
 }

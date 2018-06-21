@@ -14,7 +14,7 @@ import { DatePipe } from '@angular/common';
 })
 export class AccommodationViewComponent implements OnInit {
   id: number;
-  accommodation: AccommodationView = new AccommodationView(1,'','','','',[],1,[],[],'',[],'',[]);
+  accommodation: AccommodationView = new AccommodationView(1,'','','','',[],1,[],[],'',[],'',[], null);
   currentPrice: number;
   pricePlanHidden: boolean;
   rating: number;

@@ -77,6 +77,30 @@ export class AccommodationService {
     return this.http.get<any>(searchUrl, httpOptions);
   }
 
+  sortByRating(location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number, mode: string): Observable<any>{
+    let searchUrl: string = this.herokuUrl;
+    //appendLocation
+    searchUrl = searchUrl + 'location=' + location;
+    //append numOfPeople
+    searchUrl = searchUrl + '&capacity=' + numOfPeople;
+
+    //append additional services
+    for (let service of services) {
+      searchUrl = searchUrl + '&service=' + service.serviceName;
+    }
+
+    //append accommodationType
+    searchUrl = searchUrl + '&type=' + accommodationType;
+    //append category
+    searchUrl = searchUrl + '&category=' + accommodationCategory.name;
+
+    //searchUrl = searchUrl + '&page=' + pageNumber + '&size=5&sort=name,desc'
+    searchUrl = searchUrl + '&page=' + pageNumber + '&size=5&sort=rating' + ','+mode;
+    console.log(searchUrl);
+
+    return this.http.get<any>(searchUrl, httpOptions);
+  }
+
   getOne(id: number): Observable<AccommodationView> {
     return this.http.get<AccommodationView>(this.herokuBaseUrl + '?id=' + id, httpOptions);
   }

@@ -51,24 +51,29 @@
 
     <div class="col-lg-4">
       <h3>Accommodation categories</h3>
-      <div class="radio" *ngFor="let category of categories">
-          <label><input type="radio" name="radioValue{{category.id}}" [value]="category" [(ngModel)]="searchCategoryName">{{category.name}}</label>
+      <div class="controls" *ngFor="let category of categories">
+          <label><input type="radio" name="radioValueCategory{{category.id}}" [value]="category" [(ngModel)]="searchCategoryName">{{category.name}}</label>
       </div>
     </div>
 
     <div class="col-xs-4">
       <h3>Accommodation type</h3>
-      <div class="radio" *ngFor="let type of accommodationTypes">
-        <label><input type="radio" name="radioValue{{type.id}}" [value]="type" [(ngModel)]="searchAccommodationType">{{type.name}}</label>
+      <div class="controls radio-group" *ngFor="let type of accommodationTypes">
+        <label><input type="radio" name="radioValueType{{type.id}}" [value]="type" [(ngModel)]="searchAccommodationType">{{type.name}}</label>
     </div>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-4">
-      <p>Sortiraj po kategoriji</p>
+      <p>Sort by category</p>
       <select name="sortCategory" id="sortCategory" class="form-control">
         <option value="asc" (click)="sortCategory('asc', 0)">Ascending</option>
         <option value="desc" (click)="sortCategory('desc', 0)">Descending</option>
+      </select>
+      <p>Sort by rating</p>
+      <select name="sortRating" id="sortRating" class="form-control">
+          <option value="asc" (click)="sortByRating('asc', 0)">Ascending</option>
+          <option value="desc" (click)="sortByRating('desc', 0)">Descending</option>
       </select>
     </div>
   </div>
