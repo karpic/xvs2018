@@ -56,6 +56,13 @@ export class NewReservationComponent implements OnInit {
       }
     }
 
+    /* for(let reservation of this.accommodation.reservations) {
+      if( (this.dateParser.parseDateSimpleYearFirst(this.newReservation.startingDate.toString()) <= this.dateParser.parseDateSimple(reservation.restrictionTo.toString()))  && (this.dateParser.parseDateSimple(reservation.restrictionFrom.toString()) <= this.dateParser.parseDateSimpleYearFirst(this.newReservation.endingDate.toString()) ))
+      {
+        retVal = true;
+      }
+    } */
+
     return retVal;
   }
 
