@@ -7,6 +7,7 @@ import { AdditionalServiceView } from './../models/additionalServiceView.model';
 import { AdditionalServicesService } from './../services/additionalServices.service';
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../services/category.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -139,13 +140,17 @@ export class SearchComponent implements OnInit {
     private additionalServicesService: AdditionalServicesService,
     private accommodationService: AccommodationService,
     private categoryService: CategoryService,
-    private accommodationTypeService: AccommodationTypeService
+    private accommodationTypeService: AccommodationTypeService,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
-    this.getAdditionalServices();
+    /* this.getAdditionalServices();
     this.getCategories();
-    this.getAccommodationTypes();
+    this.getAccommodationTypes(); */
+    this.additonalServices = this.route.snapshot.data['additionalServices']['content'];
+    this.categories = this.route.snapshot.data['categories']['content'];
+    this.accommodationTypes = this.route.snapshot.data['types']['content'];
   }
 
 }

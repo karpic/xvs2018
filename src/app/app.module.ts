@@ -1,3 +1,6 @@
+import { AdditionalServicesResolver } from './resolvers/additionalServices.resolver';
+import { AccommodationTypeResolver } from './resolvers/accommodationType.resolver';
+import { AccommodationCategoryResolver } from './resolvers/accommodationCategory.resolver';
 import { DateParser } from './services/dateParser.service';
 import { LoggedInGuard } from './auth/guards/loggedInGuard.service';
 import { MessagesService } from './services/messages.service';
@@ -79,7 +82,10 @@ import { ReservationConfirmationPageComponent } from './reservations/new-reserva
     UserImpressionService,
     LoggedInGuard,
     AccommodationTypeService,
-    DateParser
+    DateParser,
+    AccommodationCategoryResolver,
+    AccommodationTypeResolver,
+    AdditionalServicesResolver
   ],
   bootstrap: [AppComponent]
 })

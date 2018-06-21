@@ -13,9 +13,11 @@ const httpOptions = {
 @Injectable()
 export class CategoryService {
   private url = 'http://localhost:8080/api/category/all';
+  //HEROKU
+  private herokuUrl = 'https://warm-badlands-25076.herokuapp.com/api/category/all';
 
   getAll(): Observable<any> {
-    return this.http.get<any>(this.url, httpOptions);
+    return this.http.get<any>(this.herokuUrl, httpOptions);
   }
 
   constructor(

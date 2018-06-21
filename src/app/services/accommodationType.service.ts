@@ -13,9 +13,12 @@ const httpOptions = {
 @Injectable()
 export class AccommodationTypeService {
   private baseUrl = 'http://localhost:8080/api/type/all';
+  //HEROKU
+  private herokuBaseUrl = 'https://warm-badlands-25076.herokuapp.com/api/type/all';
+
 
   getAll(): Observable<any> {
-    return this.http.get<any>(this.baseUrl, httpOptions);
+    return this.http.get<any>(this.herokuBaseUrl, httpOptions);
   }
 
   constructor(

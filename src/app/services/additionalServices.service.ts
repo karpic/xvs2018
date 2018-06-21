@@ -14,9 +14,11 @@ const httpOptions = {
 export class AdditionalServicesService {
   //private deployedUrll = 'http://warm-badlands-25076.herokuapp.com/api/additionalServices';
   private baseUrl = 'http://localhost:8080/api/additionalservices/all';
+  //HEROKU
+  private herokuBaseUrl = 'https://warm-badlands-25076.herokuapp.com/api/additionalservices/all';
 
   getAll(): Observable<any> {
-    return this.http.get<any>(this.baseUrl, httpOptions);
+    return this.http.get<any>(this.herokuBaseUrl, httpOptions);
   }
 
   constructor(
