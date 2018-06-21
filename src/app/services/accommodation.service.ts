@@ -18,16 +18,20 @@ export class AccommodationService {
   private baseUrl = 'http://localhost:8080/api/accommodation';
   private url = 'http://localhost:8080/api/accommodation/all?';
 
+  //HEROKU
+  private herokuBaseUrl = 'https://warm-badlands-25076.herokuapp.com/api/accommodation';
+  private herokuUrl = 'https://warm-badlands-25076.herokuapp.com/api/accommodation/all?';
+
   findOne(id: number): Observable<any> {
-    return this.http.get<any>(this.url + '=id:' + id, httpOptions);
+    return this.http.get<any>(this.herokuUrl + '=id:' + id, httpOptions);
   }
 
   simpleSearch(location: string, numOfPeople: number, pageNumber: number): Observable<any> {
-    return this.http.get<any>(this.url + 'location=' + location + '&capacity=' + numOfPeople + '&page=' + pageNumber + '&size=5&sort=name,desc', httpOptions);
+    return this.http.get<any>(this.herokuUrl + 'location=' + location + '&capacity=' + numOfPeople + '&page=' + pageNumber + '&size=5&sort=name,desc', httpOptions);
   }
 
   advancedSearch(location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number): Observable<any> {
-    let searchUrl: string = this.url;
+    let searchUrl: string = this.herokuUrl;
     //appendLocation
     searchUrl = searchUrl + 'location=' + location;
     //append numOfPeople
@@ -50,7 +54,7 @@ export class AccommodationService {
   }
 
   sortByCategory(location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number, mode: string): Observable<any>{
-    let searchUrl: string = this.url;
+    let searchUrl: string = this.herokuUrl;
     //appendLocation
     searchUrl = searchUrl + 'location=' + location;
     //append numOfPeople
@@ -74,7 +78,7 @@ export class AccommodationService {
   }
 
   getOne(id: number): Observable<AccommodationView> {
-    return this.http.get<AccommodationView>(this.baseUrl + '?id=' + id, httpOptions);
+    return this.http.get<AccommodationView>(this.herokuBaseUrl + '?id=' + id, httpOptions);
   }
 
   constructor(

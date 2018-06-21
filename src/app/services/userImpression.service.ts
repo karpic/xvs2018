@@ -16,8 +16,11 @@ const httpOptions = {
 export class UserImpressionService {
   private url = 'http://localhost:8080/api/userimpression/insert';
 
+  //HEROKU
+  private herokuUrl = 'https://warm-badlands-25076.herokuapp.com/api/userimpression/insert';
+
   insertUserImpression(userImpression: UserImpressionCreation){
-    return this.http.post<any>(this.url, userImpression, httpOptions).pipe(
+    return this.http.post<any>(this.herokuUrl, userImpression, httpOptions).pipe(
       catchError(this.handleError<any>('insertUserImpression'))
     );
   }

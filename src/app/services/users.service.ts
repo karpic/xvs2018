@@ -15,6 +15,9 @@ const httpOptions = {
 export class UsersService {
   private url = 'http://localhost:8080/api/users';
 
+  //HEROKU
+  private herokuUrl = 'https://warm-badlands-25076.herokuapp.com/api/users';
+
   constructor(
     private http: HttpClient
   ) { }

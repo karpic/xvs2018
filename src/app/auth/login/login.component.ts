@@ -16,9 +16,10 @@ export class LoginComponent implements OnInit {
   onLoginFormSubmit(forma: NgForm) {
     this.authService.attemptAuth(this.username, this.password).subscribe(
       data => {
-        this.token.saveToken(data.token);
+        //console.log(data)
+        this.token.saveToken(data['token']);
         this.authService.toggleLoggedIn();
-        window.sessionStorage.setItem('username', data.user.username);
+        window.sessionStorage.setItem('username', data['username']);
         this.router.navigate(['search']);
       }
     )

@@ -1,3 +1,4 @@
+import { SingleAccommodationResolver } from './resolvers/singleAccommodation.resolver';
 import { AccommodationTypeResolver } from './resolvers/accommodationType.resolver';
 import { AdditionalServicesResolver } from './resolvers/additionalServices.resolver';
 import { LoggedInGuard } from './auth/guards/loggedInGuard.service';
@@ -16,25 +17,33 @@ import { ReservationsComponent } from './reservations/reservations.component';
 import { AccommodationCategoryResolver } from './resolvers/accommodationCategory.resolver';
 
 const routes: Routes = [
- { path: 'login', component: LoginComponent },
- { path: 'register', component: RegisterComponent},
- {
-   path: 'search',
-   component: SearchComponent,
-   resolve: {
-     categories: AccommodationCategoryResolver,
-     additionalServices: AdditionalServicesResolver,
-     types: AccommodationTypeResolver
-   }
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'search',
+    component: SearchComponent,
+    resolve: {
+      categories: AccommodationCategoryResolver,
+      additionalServices: AdditionalServicesResolver,
+      types: AccommodationTypeResolver
+    }
   },
- { path: 'accommodation/:id', component: AccommodationViewComponent},
- { path: 'newreservation', component: NewReservationComponent, canActivate: [LoggedInGuard]},
- { path: 'userprofile', component: UserprofileComponent, canActivate: [LoggedInGuard], children: [
-   { path: 'reservations', component: ReservationsComponent},
-   //component path below are for testing purposes
-   { path: 'review', component: UserImpressionComponent},
-   { path: 'messages', component: MessagesComponent}
- ]}
+  {
+    path: 'accommodation/:id',
+    component: AccommodationViewComponent,
+    resolve: {
+      accommodationData: SingleAccommodationResolver
+    }
+  },
+  { path: 'newreservation', component: NewReservationComponent, canActivate: [LoggedInGuard] },
+  {
+    path: 'userprofile', component: UserprofileComponent, canActivate: [LoggedInGuard], children: [
+      { path: 'reservations', component: ReservationsComponent },
+      //component path below are for testing purposes
+      { path: 'review', component: UserImpressionComponent },
+      { path: 'messages', component: MessagesComponent }
+    ]
+  }
 ];
 
 @NgModule({

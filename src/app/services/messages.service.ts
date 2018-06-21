@@ -16,8 +16,11 @@ const httpOptions = {
 export class MessagesService {
   private url = 'http://localhost:8080/api/message/insert';
 
+  //HEROKU
+  private herokuUrl = 'https://warm-badlands-25076.herokuapp.com/api/message/insert';
+
   insertMessage(message: MessageCreation) {
-    return this.http.post<any>(this.url, message, httpOptions).pipe(
+    return this.http.post<any>(this.herokuUrl, message, httpOptions).pipe(
       catchError(this.handleError<any>('insertMessage'))
     );
   }

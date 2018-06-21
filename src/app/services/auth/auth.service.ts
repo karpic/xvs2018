@@ -21,6 +21,10 @@ export class AuthService {
   private url = 'http://localhost:8080/api/auth/login';
   private registerUrl = 'http://localhost:8080/api/auth/register';
 
+  //HEROKU
+  private herokuUrl = 'https://warm-badlands-25076.herokuapp.com/api/auth/login';
+  private herokuRegisterUrl = 'https://warm-badlands-25076.herokuapp.com/api/auth/register';
+
   constructor(private http: HttpClient) {
     //this.isLoggedIn = false;
    }
@@ -28,11 +32,11 @@ export class AuthService {
   attemptAuth(ussername: string, password: string): Observable<any> {
     const credentials = {username: ussername, password: password};
     console.log('attempAuth ::');
-    return this.http.post<any>(this.url, credentials);
+    return this.http.post<any>(this.herokuUrl, credentials);
   }
 
   registerUser(user: UserCreation) {
-    return this.http.post<UserCreation>(this.registerUrl, user, httpOptions).pipe(
+    return this.http.post<UserCreation>(this.herokuRegisterUrl, user, httpOptions).pipe(
       catchError(this.handleError<any>('registerUser'))
     );
   }

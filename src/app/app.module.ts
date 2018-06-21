@@ -37,6 +37,7 @@ import { UserImpressionService } from './services/userImpression.service';
 import { AccommodationTypeService } from './services/accommodationType.service';
 import { RegistrationConfirmationPageComponent } from './auth/register/registration-confirmation-page/registration-confirmation-page.component';
 import { ReservationConfirmationPageComponent } from './reservations/new-reservation/reservation-confirmation-page/reservation-confirmation-page.component';
+import { SingleAccommodationResolver } from './resolvers/singleAccommodation.resolver';
 
 
 @NgModule({
@@ -85,7 +86,8 @@ import { ReservationConfirmationPageComponent } from './reservations/new-reserva
     DateParser,
     AccommodationCategoryResolver,
     AccommodationTypeResolver,
-    AdditionalServicesResolver
+    AdditionalServicesResolver,
+    SingleAccommodationResolver
   ],
   bootstrap: [AppComponent]
 })

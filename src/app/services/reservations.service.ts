@@ -15,18 +15,21 @@ const httpOptions = {
 export class ReservationsService {
   private url = 'http://localhost:8080/api/reservation';
 
+  //HEROKU
+  private herokuUrl = 'https://warm-badlands-25076.herokuapp.com/api/reservation';
+
   getMyReservations(): Observable<any> {
-    return this.http.get<any>(this.url+'/myreservations', httpOptions);
+    return this.http.get<any>(this.herokuUrl+'/myreservations', httpOptions);
   }
 
   reserve(reservation: ReservationCreation): Observable<any> {
-    return this.http.post<any>(this.url+'/reserve', reservation, httpOptions).pipe(
+    return this.http.post<any>(this.herokuUrl+'/reserve', reservation, httpOptions).pipe(
       catchError(this.handleError<any>('reserve'))
     );
   }
 
   cancelReservation(id: number) {
-    return this.http.delete<any>(this.url+'/cancel?id='+id, httpOptions).pipe(
+    return this.http.delete<any>(this.herokuUrl+'/cancel?id='+id, httpOptions).pipe(
       catchError(this.handleError<any>('cancelReservation'))
     );
   }
