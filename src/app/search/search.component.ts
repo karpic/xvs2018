@@ -26,6 +26,8 @@ export class SearchComponent implements OnInit {
   //simple search options
   location: string = "";
   capacity: number = 0;
+  dateFrom: Date = new Date();
+  dateTo: Date = new Date();
 
 
   //additionalSearchOptions
@@ -76,7 +78,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchSimple(pageNumber: number) {
-    this.accommodationService.simpleSearch(this.location, this.capacity, pageNumber).subscribe(
+    this.accommodationService.simpleSearch(this.dateFrom, this.dateTo, this.location, this.capacity, pageNumber).subscribe(
       responseData => {
         this.accommodationList = responseData['content'];
         this.numberOfPages = responseData.totalPages;
@@ -87,7 +89,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchAdditional(pageNumber: number) {
-    this.accommodationService.advancedSearch(this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType.name, this.searchCategoryName, pageNumber).subscribe(
+    this.accommodationService.advancedSearch(this.dateFrom, this.dateTo, this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType.name, this.searchCategoryName, pageNumber).subscribe(
       responseData => {
         this.accommodationList = responseData['content'];
         this.numberOfPages = responseData.totalPages;
@@ -98,7 +100,7 @@ export class SearchComponent implements OnInit {
   }
 
   sortCategory(mode: string, pageNumber: number) {
-    this.accommodationService.sortByCategory(this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType.name, this.searchCategoryName, pageNumber, mode).subscribe(
+    this.accommodationService.sortByCategory(this.dateFrom, this.dateTo, this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType.name, this.searchCategoryName, pageNumber, mode).subscribe(
       responseData => {
         this.accommodationList = responseData['content'];
         this.numberOfPages = responseData.totalPages;
@@ -109,7 +111,7 @@ export class SearchComponent implements OnInit {
   }
 
   sortByRating(mode: string, pageNumber: number) {
-    this.accommodationService.sortByRating(this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType.name, this.searchCategoryName, pageNumber, mode).subscribe(
+    this.accommodationService.sortByRating(this.dateFrom, this.dateTo, this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType.name, this.searchCategoryName, pageNumber, mode).subscribe(
       responseData => {
         this.accommodationList = responseData['content'];
         this.numberOfPages = responseData.totalPages;

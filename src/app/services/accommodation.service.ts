@@ -23,15 +23,19 @@ export class AccommodationService {
   private herokuUrl = 'https://warm-badlands-25076.herokuapp.com/api/accommodation/all?';
 
   findOne(id: number): Observable<any> {
-    return this.http.get<any>(this.herokuUrl + '=id:' + id, httpOptions);
+    return this.http.get<any>(this.url + '=id:' + id, httpOptions);
   }
 
-  simpleSearch(location: string, numOfPeople: number, pageNumber: number): Observable<any> {
+  simpleSearch(dateFrom: Date, dateTo: Date, location: string, numOfPeople: number, pageNumber: number): Observable<any> {
     return this.http.get<any>(this.herokuUrl + 'location=' + location + '&capacity=' + numOfPeople + '&page=' + pageNumber + '&size=5&sort=name,desc', httpOptions);
   }
 
-  advancedSearch(location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number): Observable<any> {
+  advancedSearch(dateFrom: Date, dateTo: Date, location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number): Observable<any> {
     let searchUrl: string = this.herokuUrl;
+    //append dates (from ,to)
+    /* searchUrl = searchUrl + 'from=' + this.reverseDate(dateFrom);
+    searchUrl = searchUrl + '&to=' + this.reverseDate(dateTo); */
+
     //appendLocation
     searchUrl = searchUrl + 'location=' + location;
     //append numOfPeople
@@ -53,8 +57,13 @@ export class AccommodationService {
     return this.http.get<any>(searchUrl, httpOptions);
   }
 
-  sortByCategory(location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number, mode: string): Observable<any>{
+  sortByCategory(dateFrom: Date, dateTo: Date, location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number, mode: string): Observable<any>{
     let searchUrl: string = this.herokuUrl;
+
+    //append dates (from ,to)
+  /*   searchUrl = searchUrl + 'from=' + this.reverseDate(dateFrom);
+    searchUrl = searchUrl + '&to=' + this.reverseDate(dateTo); */
+
     //appendLocation
     searchUrl = searchUrl + 'location=' + location;
     //append numOfPeople
@@ -77,8 +86,13 @@ export class AccommodationService {
     return this.http.get<any>(searchUrl, httpOptions);
   }
 
-  sortByRating(location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number, mode: string): Observable<any>{
+  sortByRating(dateFrom: Date, dateTo: Date, location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number, mode: string): Observable<any>{
     let searchUrl: string = this.herokuUrl;
+
+    //append dates (from ,to)
+   /*  searchUrl = searchUrl + 'from=' + this.reverseDate(dateFrom);
+    searchUrl = searchUrl + '&to=' + this.reverseDate(dateTo); */
+
     //appendLocation
     searchUrl = searchUrl + 'location=' + location;
     //append numOfPeople
@@ -99,6 +113,15 @@ export class AccommodationService {
     console.log(searchUrl);
 
     return this.http.get<any>(searchUrl, httpOptions);
+  }
+
+  reverseDate(d: Date): string{
+    let retVal = '';
+    retVal = retVal + d.getDay() + '-';
+    retVal = retVal + d.getMonth() + '-';
+    retVal = retVal + d.getFullYear();
+    console.log(retVal);
+    return retVal;
   }
 
   getOne(id: number): Observable<AccommodationView> {
