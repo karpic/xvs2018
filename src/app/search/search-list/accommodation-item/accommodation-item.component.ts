@@ -12,19 +12,28 @@ import { Router } from '@angular/router';
 export class AccommodationItemComponent implements OnInit {
   @Input() accommodation: AccommodationView;
   @Input() displayReservationButton: boolean;
-  price: number;
+  currentPrice: number;
 
   calculateCurrentPrice() {
     const currentDate: Date = new Date();
     const currentDateISO: Date = new Date(currentDate.toISOString());
     for(let pricePlan of this.accommodation.pricePlan){
       let curr = new Date(currentDateISO);
+      console.log(curr);
       let starting = new Date(this.dateParser.parseDateSimple(pricePlan.startingDate.toString()));
+      console.log(starting);
+
       let ending = new Date(this.dateParser.parseDateSimple(pricePlan.endingDate.toString()));
+      console.log(ending);
+
       if(curr > starting && curr < ending){
-        this.price = pricePlan.price;
+        this.currentPrice = pricePlan.price;
       }
     }
+  }
+
+  ngOnChanges(changes) {
+    this.calculateCurrentPrice();
   }
 
 
@@ -45,6 +54,7 @@ export class AccommodationItemComponent implements OnInit {
 
   ngOnInit() {
     this.calculateCurrentPrice();
+    console.log(this.currentPrice);
   }
 
 }

@@ -115,6 +115,35 @@ export class AccommodationService {
     return this.http.get<any>(searchUrl, httpOptions);
   }
 
+  sortByPrice(dateFrom: Date, dateTo: Date, location: string, numOfPeople: number, services: AdditionalServiceView[], accommodationType: string, accommodationCategory: CategoryView, pageNumber: number, mode: string): Observable<any>{
+    let searchUrl: string = this.herokuUrl;
+
+    //append dates (from ,to)
+   /*  searchUrl = searchUrl + 'from=' + this.reverseDate(dateFrom);
+    searchUrl = searchUrl + '&to=' + this.reverseDate(dateTo); */
+
+    //appendLocation
+    searchUrl = searchUrl + 'location=' + location;
+    //append numOfPeople
+    searchUrl = searchUrl + '&capacity=' + numOfPeople;
+
+    //append additional services
+    for (let service of services) {
+      searchUrl = searchUrl + '&service=' + service.serviceName;
+    }
+
+    //append accommodationType
+    searchUrl = searchUrl + '&type=' + accommodationType;
+    //append category
+    searchUrl = searchUrl + '&category=' + accommodationCategory.name;
+
+    //searchUrl = searchUrl + '&page=' + pageNumber + '&size=5&sort=name,desc'
+    searchUrl = searchUrl + '&page=' + pageNumber + '&size=5&sort=pricePlan.price' + ','+mode;
+    console.log(searchUrl);
+
+    return this.http.get<any>(searchUrl, httpOptions);
+  }
+
   reverseDate(d: Date): string{
     let retVal = '';
     retVal = retVal + d.getDay() + '-';

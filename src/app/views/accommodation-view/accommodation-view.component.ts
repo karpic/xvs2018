@@ -35,8 +35,13 @@ export class AccommodationViewComponent implements OnInit {
     const currentDateISO: Date = new Date(currentDate.toISOString());
     for(let pricePlan of this.accommodation.pricePlan){
       let curr = new Date(currentDateISO);
+      console.log(curr);
       let starting = new Date(this.dateParser.parseDateSimple(pricePlan.startingDate.toString()));
+      console.log(starting);
+
       let ending = new Date(this.dateParser.parseDateSimple(pricePlan.endingDate.toString()));
+      console.log(ending);
+
       if(curr > starting && curr < ending){
         this.currentPrice = pricePlan.price;
       }

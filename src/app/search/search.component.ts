@@ -121,6 +121,17 @@ export class SearchComponent implements OnInit {
     );
   }
 
+  sortByPrice(mode: string, pageNumber: number) {
+    this.accommodationService.sortByPrice(this.dateFrom, this.dateTo, this.location, this.capacity, this.searchAdditionalServices, this.searchAccommodationType.name, this.searchCategoryName, pageNumber, mode).subscribe(
+      responseData => {
+        this.accommodationList = responseData['content'];
+        this.numberOfPages = responseData.totalPages;
+        this.totalNumberOfElements = responseData.totalElements;
+        this.currentPage = responseData.pageable.pageNumber;
+      }
+    );
+  }
+
   nextPage() {
       if(this.additionalSearchOptionsHidden){
         this.currentPage = this.currentPage + 1;
