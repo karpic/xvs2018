@@ -12,10 +12,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  newUser: UserCreation = new UserCreation('','','','','', new Date());
+  newUser: UserCreation = new UserCreation('', '', '', '', '', new Date());
   registeredUser: UserView;
   registered: boolean;
-
+  public strength = 0;
+  public passwordStrong = false;
+  public barLabel = 'Password strength:';
+  public strengthLabels = ['(Useless)', '(Weak)', '(Normal)', '(Strong)', '(Great!)'];
+  public myColors = ['#DD2C00', '#FF6D00', '#FFD600', '#AEEA00', '#00C853'];
   onRegisterFormSubmit(forma: NgForm) {
     this.newUser.firstName = forma.value.firstname;
     this.newUser.lastName = forma.value.lastname;
@@ -29,7 +33,6 @@ export class RegisterComponent implements OnInit {
         this.registered = true;
       }
     );
-    //this.router.navigate(['login']);
   }
 
   resetForm(forma: NgForm) {
@@ -43,7 +46,14 @@ export class RegisterComponent implements OnInit {
   ) {
     this.registered = false;
    }
-
+   onPasswordChange(event) {
+    if (event > 30) {
+      this.passwordStrong = true;
+    } else {
+      this.passwordStrong = false;
+    }
+    this.strength = event;
+   }
   ngOnInit() {
   }
 

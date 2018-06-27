@@ -39,6 +39,11 @@ import { RegistrationConfirmationPageComponent } from './auth/register/registrat
 import { ReservationConfirmationPageComponent } from './reservations/new-reservation/reservation-confirmation-page/reservation-confirmation-page.component';
 import { SingleAccommodationResolver } from './resolvers/singleAccommodation.resolver';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {PasswordStrengthBarModule} from 'ng2-password-strength-bar';
+import { PasswordstrengthComponent } from './auth/register/passwordstrength/passwordstrength.component';
+import { UserSettingComponent } from './userprofile/user-setting/user-setting.component';
+import { ForgetComponent } from './auth/login/forget/forget.component';
+import { ResetpasswordComponent } from './auth/resetpassword/resetpassword.component';
 
 @NgModule({
   declarations: [
@@ -57,12 +62,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MessagesComponent,
     RegistrationConfirmationPageComponent,
     ReservationConfirmationPageComponent,
+    PasswordstrengthComponent,
+    UserSettingComponent,
+    ForgetComponent,
+    ResetpasswordComponent,
   ],
   imports: [
     FormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    PasswordStrengthBarModule,
     BrowserAnimationsModule
   ],
   providers: [

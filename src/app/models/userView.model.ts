@@ -1,5 +1,5 @@
-import { ReservationView } from "./reservationView.model";
-import { UserImpressionView } from "./userImpressionView.model";
+import { ReservationView } from './reservationView.model';
+import { UserImpressionView } from './userImpressionView.model';
 
 export class UserView {
   constructor(
@@ -12,5 +12,5 @@ export class UserView {
     public reservations: Array<ReservationView>,
     public userImpression: Array<UserImpressionView>,
     public blocked: boolean
-  ){}
+  ) {}
 }
