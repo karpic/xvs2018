@@ -1,0 +1,29 @@
+<div class="alert alert-danger alert-dismissible" *ngIf="error">
+  <button type="button" class="close" (click)="error = undefined" data-dismiss="alert">&times;</button>
+  {{error}}
+</div>
+
+<div class="alert alert-success alert-dismissible" *ngIf="message">
+  <button type="button" class="close" (click)="message = undefined" data-dismiss="alert">&times;</button>
+  {{message}}
+</div>
+
+<form class="form" #f ="ngForm" (submit)="submit()" >
+  <div class="form-group form-group-sm">
+    <label>Old password:</label>
+    <input type="password" required class="form-control" name="old" ngModel #old="ngModel">
+  </div>
+  <div class="form-group form-group-sm">
+    <label>New password:</label>
+    <input type="password" required class="form-control" name="new" ngModel #new="ngModel" [minlength]="5" [maxlength]="50">
+    <app-password-strength
+      [passwordToCheck]="new.value"
+      [barLabel]="barLabel"
+      [barColors]="myColors"
+      [strengthLabels]="strengthLabels"
+      (strength)="onPasswordChange($event)" >
+    </app-password-strength>
+  </div>
+  <button [disabled]="!f.valid || !passwordStrong" type="submit" class="btn btn-success btn-block">Change password</button>
+</form>
+

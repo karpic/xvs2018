@@ -15,10 +15,15 @@ import { AccommodationViewComponent } from './views/accommodation-view/accommoda
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { ReservationsComponent } from './reservations/reservations.component';
 import { AccommodationCategoryResolver } from './resolvers/accommodationCategory.resolver';
+import {UserSettingComponent} from './userprofile/user-setting/user-setting.component';
+import {ForgetComponent} from './auth/login/forget/forget.component';
+import {ResetpasswordComponent} from './auth/resetpassword/resetpassword.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'resetpass', component: ResetpasswordComponent },
+  { path: 'forget', component: ForgetComponent },
   {
     path: 'search',
     component: SearchComponent,
@@ -38,9 +43,9 @@ const routes: Routes = [
   { path: 'newreservation', component: NewReservationComponent, canActivate: [LoggedInGuard] },
   {
     path: 'userprofile', component: UserprofileComponent, canActivate: [LoggedInGuard], children: [
-      { path: 'reservations', component: ReservationsComponent },
-      //component path below are for testing purposes
-      { path: 'review', component: UserImpressionComponent },
+      { path: 'reservations', component: ReservationsComponent},
+      { path: 'settings', component: UserSettingComponent},
+      { path: 'review', component: UserImpressionComponent},
       { path: 'messages', component: MessagesComponent }
     ]
   }

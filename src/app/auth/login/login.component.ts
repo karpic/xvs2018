@@ -10,19 +10,24 @@ import { TokenStorage } from '../../services/auth/token.storage';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username: string = "";
-  password: string = "";
-
+  username = '';
+  password = '';
+  public error = '';
   onLoginFormSubmit(forma: NgForm) {
     this.authService.attemptAuth(this.username, this.password).subscribe(
       data => {
-        //console.log(data)
+        if (data['roles'].indexOf('ROLE_registered') === -1) {
+          this.error = 'You are not registered user.';
+          return;
+        }
         this.token.saveToken(data['token']);
         this.authService.toggleLoggedIn();
         window.sessionStorage.setItem('username', data['username']);
         this.router.navigate(['search']);
+      }, error => {
+        this.error = 'Username or password is invalid.';
       }
-    )
+    );
   }
 
 

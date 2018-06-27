@@ -2,21 +2,30 @@
   <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <form #loginForm="ngForm" (ngSubmit)="onLoginFormSubmit(loginForm)" class="form-signin">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <div class="alert alert-danger alert-dismissible" *ngIf="error">
+        <button type="button" class="close" (click)="error = undefined" data-dismiss="alert">&times;</button>
+        {{error}}
+      </div>
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" class="form-control" required autofocus ngModel #usernameRef="ngModel" [(ngModel)]="username">
-        <span class="help-block" *ngIf="!usernameRef.valid && usernameRef.touched">Username is required!</span>
+        <span class="text-danger" *ngIf="!usernameRef.valid && usernameRef.touched">Username is required!</span>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" id="password" name="password" class="form-control" required ngModel #passwordRef="ngModel" [(ngModel)]="password">
-        <span class="help-block" *ngIf="!passwordRef.valid && passwordRef.touched">Password is required!</span>
+        <span class="text-danger" *ngIf="!passwordRef.valid && passwordRef.touched">Password is required!</span>
       </div>
 
       <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!loginForm.valid">Login</button>
       <button class="btn btn-lg btn-danger btn-block" routerLink="/">Cancel</button>
     </form>
+    Forgot your password?
+    <span routerLink="/forget" style="text-decoration: underline; color: #0000EE; cursor: pointer;">
+      Click here!
+    </span>
   </div>
+
 </div>
 

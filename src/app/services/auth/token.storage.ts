@@ -21,5 +21,7 @@ export class TokenStorage {
   public getToken(): string {
     return sessionStorage.getItem(TOKEN_KEY);
   }
-
+  public getUsername(): string {
+    return sessionStorage.getItem('username');
+  }
 }

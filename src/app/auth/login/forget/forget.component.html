@@ -1,0 +1,19 @@
+<div class="alert alert-danger alert-dismissible" *ngIf="error">
+  <button type="button" class="close" (click)="error = undefined" data-dismiss="alert">&times;</button>
+  {{error}}
+</div>
+
+<div class="alert alert-success alert-dismissible" *ngIf="message">
+  <button type="button" class="close" (click)="message = undefined" data-dismiss="alert">&times;</button>
+  {{message}}
+</div>
+
+<div class="row text-center">
+  <form class="form-inline" #f="ngForm" (submit)="submit()">
+    <div class="form-group">
+      <label>Email:</label>
+      <input class="form-control" type="email" [email]="true" name="email" ngModel #email="ngModel" required>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!f.valid">Reset password!</button>
+  </form>
+</div>

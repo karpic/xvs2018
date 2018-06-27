@@ -4,34 +4,45 @@
       <div class="form-group">
         <label for="firstname">First name</label>
         <input type="text" id="firstname" name="firstname" class="form-control" required ngModel #firstnameRef="ngModel">
-        <span class="help-block" *ngIf="!firstnameRef.valid && firstnameRef.touched">First name is required!</span>
+        <span class="text-danger" *ngIf="!firstnameRef.valid && firstnameRef.touched">First name is required!</span>
       </div>
 
       <div class="form-group">
         <label for="lastname">Last name</label>
         <input type="text" id="lastname" name="lastname" class="form-control" required ngModel #lastnameRef="ngModel">
-        <span class="help-block" *ngIf="!lastnameRef.valid && lastnameRef.touched">Last name is required!</span>
+        <span class="text-danger" *ngIf="!lastnameRef.valid && lastnameRef.touched">Last name is required!</span>
       </div>
 
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" id="email" name="email" class="form-control" required ngModel #emailRef="ngModel">
-        <span class="help-block" *ngIf="!emailRef.valid && emailRef.touched">Email is required!</span>
+        <input type="text" id="email" name="email" class="form-control" required [email]="true" ngModel #emailRef="ngModel">
+        <span class="text-danger" *ngIf="!emailRef.valid && emailRef.touched">Email is required!</span>
       </div>
 
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" class="form-control" required ngModel #usernameRef="ngModel">
-        <span class="help-block" *ngIf="!usernameRef.valid && usernameRef.touched">Username is required!</span>
+        <span class="text-danger" *ngIf="!usernameRef.valid && usernameRef.touched">Username is required!</span>
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control" required ngModel #passwordRef="ngModel">
-        <span class="help-block" *ngIf="!passwordRef.valid && passwordRef.touched">Password is required!</span>
+        <input type="password" id="password" name="password" class="form-control" required ngModel [minlength]="5" [maxlength]="50" #passwordRef="ngModel">
+        <span class="text-danger" *ngIf="!passwordRef.valid && passwordRef.touched">Password with 5+ chars is required!</span>
+        <app-password-strength
+          [passwordToCheck]="passwordRef.value"
+          [barLabel]="barLabel"
+          [barColors]="myColors"
+          [strengthLabels]="strengthLabels"
+          (strength)="onPasswordChange($event)" >
+        </app-password-strength>
       </div>
-
-      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+      <div class="form-group">
+        <label for="password">Password confirm</label>
+        <input type="password" id="passwordRepeat" name="passwordRepeat" class="form-control" required ngModel #passwordRepeatRef="ngModel">
+        <span class="text-danger" *ngIf="(passwordRepeatRef.value !== passwordRef.value) && passwordRef.touched">Password mismatch!</span>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid || passwordRepeatRef.value !== passwordRef.value || !passwordStrong">Register</button>
       <button class="btn btn-warning" (click)="resetForm(registerForm)">Reset</button>
       <button class="btn btn-danger" routerLink="/">Cancel</button>
     </form>
